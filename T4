@@ -1,0 +1,42 @@
+import React from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+
+const posts = [
+  {
+    date: "June 19, 1999",
+    title: "If You Had My Love",
+    artist: "Jennifer Lopez",
+    album: "On the 6",
+    genre: "Pop/R&B",
+    weeksAtOne: 5,
+    trivia: "This was J.Lo's debut single and the first #1 of the 2000s era. Originally written for Michael Jackson!",
+    spotify: "https://open.spotify.com/track/0qQfHxu2tF3d3RJjLzL7HH",
+    youtube: "https://www.youtube.com/watch?v=lYfkl-HXfuU"
+  }
+];
+
+export default function Home() {
+  return (
+    <div className="min-h-screen bg-yellow-50 p-6 font-mono text-brown-900">
+      <h1 className="text-4xl font-bold text-center mb-6">🎶 Top Track Time Machine (T4)</h1>
+
+      {posts.map((post, i) => (
+        <Card key={i} className="max-w-xl mx-auto mb-6 bg-white shadow-lg">
+          <CardContent>
+            <h2 className="text-2xl font-bold mb-1">🗓️ {post.date}</h2>
+            <h3 className="text-xl text-pink-700 font-semibold">🎵 "{post.title}" by {post.artist}</h3>
+            <p className="mt-2 text-sm">💡 {post.trivia}</p>
+            <p className="mt-2">🎧 <a href={post.spotify} className="text-blue-600 underline" target="_blank">Listen on Spotify</a></p>
+            <p>📺 <a href={post.youtube} className="text-blue-600 underline" target="_blank">Watch on YouTube</a></p>
+            <p className="mt-2 text-sm text-gray-700">🏆 Weeks at #1: {post.weeksAtOne} | Album: {post.album} | Genre: {post.genre}</p>
+          </CardContent>
+        </Card>
+      ))}
+
+      <div className="text-center mt-10">
+        <Button variant="outline" className="text-sm">Browse Archive (Coming Soon)</Button>
+      </div>
+    </div>
+  );
+}
