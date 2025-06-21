@@ -1,0 +1,33 @@
+.container {
+  min-height: 100vh;
+  padding: 2rem;
+  background-color: #fef9f1;
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+}
+.main {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+.title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 2rem;
+  color: #333;
+}
+.date {
+  color: #999;
+}
+.fact {
+  font-style: italic;
+  margin-top: 1rem;
+}
+.links a {
+  margin: 0 1rem;
+  color: #457b9d;
+  text-decoration: none;
+}
+.links a:hover {
+  text-decoration: underline;
+}
