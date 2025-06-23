@@ -1,9 +1,9 @@
-name: Update Daily Billboard Song
+name: Update Daily Billboard Songs
 
 on:
   workflow_dispatch:  # Manual trigger
   schedule:
-    - cron: '0 7 * * *'  # Runs daily at 7:00 AM UTC
+    - cron: '0 7 * * *'  # Every day at 7:00 AM UTC
 
 jobs:
   update-song:
@@ -20,13 +20,13 @@ jobs:
       - name: Install billboard-top-100
         run: npm install billboard-top-100
 
-      - name: Run fetchBillboardSong
-        run: node fetchBillboardSong.js
+      - name: Run fetchBillboardSongs
+        run: node fetchBillboardSongs.js
 
-      - name: Commit Updated Song
+      - name: Commit Updated Songs
         run: |
           git config --global user.name 'github-actions'
           git config --global user.email 'actions@github.com'
-          git add data/todaysSong.json
-          git commit -m "🎶 Daily update: Billboard song of the day" || echo "No changes to commit"
+          git add data/todaysSongs.json
+          git commit -m "🎶 Daily update: Top songs from 10/20/30/40/50 years ago" || echo "No changes to commit"
           git push
