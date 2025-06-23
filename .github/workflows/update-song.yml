@@ -32,4 +32,5 @@ jobs:
     git pull --rebase origin main || true
     git add data/todaysSongs.json
     git commit -m "🎶 Daily update: Billboard song of the day" || echo "No changes to commit"
-    git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }} HEAD:main
+    git push --force "https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}" HEAD:main
+
