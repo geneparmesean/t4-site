@@ -25,16 +25,16 @@ jobs:
       - name: Run fetchBillboardSongs
         run: node fetchBillboardSongs.js
 
-      - name: Commit Updated Songs
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          git config --global user.name 'github-actions'
-          git config --global user.email 'actions@github.com'
-          git pull --rebase origin main || true
-          git add data/todaysSongs.json
-          git commit -m "🎶 Daily update: Billboard song of the day" || echo "No changes to commit"
-          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}
-          git push origin HEAD:main
+    - name: Commit Updated Songs
+  env:
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  run: |
+    git config --global user.name 'github-actions'
+    git config --global user.email 'actions@github.com'
+    git pull --rebase origin main || true
+    git add data/todaysSongs.json
+    git commit -m "🎶 Daily update: Billboard song of the day" || echo "No changes to commit"
+    git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}
+    git push --force origin HEAD:main
 
 
