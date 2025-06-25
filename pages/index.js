@@ -4,9 +4,15 @@ import styles from '../styles/Home.module.css';
 export default function Home({ song }) {
   return (
     <div className={styles.container}>
-      <Head>
-        <title>Top Track Time Machine</title>
-      </Head>
+<Head>
+  <title>Top Track Time Machine</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Stardos+Stencil&display=swap"
+    rel="stylesheet"
+  />
+</Head>
       <main className={styles.main}>
         <h1 className={styles.title}>🎶 {song.title} – {song.artist}</h1>
         <p className={styles.date}>📅 {song.date}</p>
