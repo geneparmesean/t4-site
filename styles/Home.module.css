@@ -1,33 +1,40 @@
 .container {
   min-height: 100vh;
   padding: 2rem;
-  background-color: #fef9f1;
+  background-color: #000; /* Black background */
   font-family: 'Poppins', sans-serif;
-  text-align: center;
+  color: #f4f4f4; /* Light text for contrast */
 }
+
 .main {
-  background: white;
+  background: #111; /* Darker card background */
   border-radius: 12px;
   padding: 2rem;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.05);
 }
+
 .title {
-  font-family: 'DM Serif Display', serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 2rem;
-  color: #333;
+  color: #fff;
 }
+
 .date {
-  color: #999;
+  color: #aaa;
 }
+
 .fact {
   font-style: italic;
   margin-top: 1rem;
+  color: #ddd;
 }
+
 .links a {
   margin: 0 1rem;
-  color: #457b9d;
+  color: #00bfff;
   text-decoration: none;
 }
+
 .links a:hover {
   text-decoration: underline;
 }
