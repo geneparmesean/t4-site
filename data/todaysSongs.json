@@ -7,13 +7,6 @@
     "youtube": "https://www.youtube.com/results?search_query=Sussudio%20Phil%20Collins"
   },
   {
-    "title": "We Belong Together",
-    "artist": "Mariah Carey",
-    "fact": "#1 on Billboard Hot 100 on this day in 2005.",
-    "spotify": "https://open.spotify.com/search/We%20Belong%20Together%20Mariah%20Carey",
-    "youtube": "https://www.youtube.com/results?search_query=We%20Belong%20Together%20Mariah%20Carey"
-  },
-  {
     "title": "Love Will Keep Us Together",
     "artist": "The Captain & Tennille",
     "fact": "#1 on Billboard Hot 100 on this day in 1975.",
@@ -26,6 +19,13 @@
     "fact": "#1 on Billboard Hot 100 on this day in 2015.",
     "spotify": "https://open.spotify.com/search/See%20You%20Again%20Wiz%20Khalifa%20Featuring%20Charlie%20Puth",
     "youtube": "https://www.youtube.com/results?search_query=See%20You%20Again%20Wiz%20Khalifa%20Featuring%20Charlie%20Puth"
+  },
+  {
+    "title": "We Belong Together",
+    "artist": "Mariah Carey",
+    "fact": "#1 on Billboard Hot 100 on this day in 2005.",
+    "spotify": "https://open.spotify.com/search/We%20Belong%20Together%20Mariah%20Carey",
+    "youtube": "https://www.youtube.com/results?search_query=We%20Belong%20Together%20Mariah%20Carey"
   },
   {
     "title": "Waterfalls",
