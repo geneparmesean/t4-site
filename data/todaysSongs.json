@@ -1,12 +1,5 @@
 [
   {
-    "title": "We Belong Together",
-    "artist": "Mariah Carey",
-    "fact": "#1 on Billboard Hot 100 on this day in 2005.",
-    "spotify": "https://open.spotify.com/search/We%20Belong%20Together%20Mariah%20Carey",
-    "youtube": "https://www.youtube.com/results?search_query=We%20Belong%20Together%20Mariah%20Carey"
-  },
-  {
     "title": "A View To A Kill",
     "artist": "Duran Duran",
     "fact": "#1 on Billboard Hot 100 on this day in 1985.",
@@ -14,11 +7,11 @@
     "youtube": "https://www.youtube.com/results?search_query=A%20View%20To%20A%20Kill%20Duran%20Duran"
   },
   {
-    "title": "Love Will Keep Us Together",
-    "artist": "The Captain & Tennille",
-    "fact": "#1 on Billboard Hot 100 on this day in 1975.",
-    "spotify": "https://open.spotify.com/search/Love%20Will%20Keep%20Us%20Together%20The%20Captain%20%26%20Tennille",
-    "youtube": "https://www.youtube.com/results?search_query=Love%20Will%20Keep%20Us%20Together%20The%20Captain%20%26%20Tennille"
+    "title": "We Belong Together",
+    "artist": "Mariah Carey",
+    "fact": "#1 on Billboard Hot 100 on this day in 2005.",
+    "spotify": "https://open.spotify.com/search/We%20Belong%20Together%20Mariah%20Carey",
+    "youtube": "https://www.youtube.com/results?search_query=We%20Belong%20Together%20Mariah%20Carey"
   },
   {
     "title": "See You Again",
@@ -26,6 +19,13 @@
     "fact": "#1 on Billboard Hot 100 on this day in 2015.",
     "spotify": "https://open.spotify.com/search/See%20You%20Again%20Wiz%20Khalifa%20Featuring%20Charlie%20Puth",
     "youtube": "https://www.youtube.com/results?search_query=See%20You%20Again%20Wiz%20Khalifa%20Featuring%20Charlie%20Puth"
+  },
+  {
+    "title": "Love Will Keep Us Together",
+    "artist": "The Captain & Tennille",
+    "fact": "#1 on Billboard Hot 100 on this day in 1975.",
+    "spotify": "https://open.spotify.com/search/Love%20Will%20Keep%20Us%20Together%20The%20Captain%20%26%20Tennille",
+    "youtube": "https://www.youtube.com/results?search_query=Love%20Will%20Keep%20Us%20Together%20The%20Captain%20%26%20Tennille"
   },
   {
     "title": "Waterfalls",
