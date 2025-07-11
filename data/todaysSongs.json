@@ -1,5 +1,12 @@
 [
   {
+    "title": "Waterfalls",
+    "artist": "TLC",
+    "fact": "#1 on Billboard Hot 100 on this day in 1995.",
+    "spotify": "https://open.spotify.com/search/Waterfalls%20TLC",
+    "youtube": "https://www.youtube.com/results?search_query=Waterfalls%20TLC"
+  },
+  {
     "title": "A View To A Kill",
     "artist": "Duran Duran",
     "fact": "#1 on Billboard Hot 100 on this day in 1985.",
@@ -26,12 +33,5 @@
     "fact": "#1 on Billboard Hot 100 on this day in 1975.",
     "spotify": "https://open.spotify.com/search/Love%20Will%20Keep%20Us%20Together%20The%20Captain%20%26%20Tennille",
     "youtube": "https://www.youtube.com/results?search_query=Love%20Will%20Keep%20Us%20Together%20The%20Captain%20%26%20Tennille"
-  },
-  {
-    "title": "Waterfalls",
-    "artist": "TLC",
-    "fact": "#1 on Billboard Hot 100 on this day in 1995.",
-    "spotify": "https://open.spotify.com/search/Waterfalls%20TLC",
-    "youtube": "https://www.youtube.com/results?search_query=Waterfalls%20TLC"
   }
 ]
