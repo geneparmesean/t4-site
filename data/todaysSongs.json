@@ -1,19 +1,5 @@
 [
   {
-    "title": "A View To A Kill",
-    "artist": "Duran Duran",
-    "fact": "#1 on Billboard Hot 100 on this day in 1985.",
-    "spotify": "https://open.spotify.com/search/A%20View%20To%20A%20Kill%20Duran%20Duran",
-    "youtube": "https://www.youtube.com/results?search_query=A%20View%20To%20A%20Kill%20Duran%20Duran"
-  },
-  {
-    "title": "We Belong Together",
-    "artist": "Mariah Carey",
-    "fact": "#1 on Billboard Hot 100 on this day in 2005.",
-    "spotify": "https://open.spotify.com/search/We%20Belong%20Together%20Mariah%20Carey",
-    "youtube": "https://www.youtube.com/results?search_query=We%20Belong%20Together%20Mariah%20Carey"
-  },
-  {
     "title": "See You Again",
     "artist": "Wiz Khalifa Featuring Charlie Puth",
     "fact": "#1 on Billboard Hot 100 on this day in 2015.",
@@ -33,5 +19,19 @@
     "fact": "#1 on Billboard Hot 100 on this day in 1995.",
     "spotify": "https://open.spotify.com/search/Waterfalls%20TLC",
     "youtube": "https://www.youtube.com/results?search_query=Waterfalls%20TLC"
+  },
+  {
+    "title": "A View To A Kill",
+    "artist": "Duran Duran",
+    "fact": "#1 on Billboard Hot 100 on this day in 1985.",
+    "spotify": "https://open.spotify.com/search/A%20View%20To%20A%20Kill%20Duran%20Duran",
+    "youtube": "https://www.youtube.com/results?search_query=A%20View%20To%20A%20Kill%20Duran%20Duran"
+  },
+  {
+    "title": "We Belong Together",
+    "artist": "Mariah Carey",
+    "fact": "#1 on Billboard Hot 100 on this day in 2005.",
+    "spotify": "https://open.spotify.com/search/We%20Belong%20Together%20Mariah%20Carey",
+    "youtube": "https://www.youtube.com/results?search_query=We%20Belong%20Together%20Mariah%20Carey"
   }
 ]
