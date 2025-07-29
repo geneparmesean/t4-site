@@ -1,17 +1,10 @@
 [
   {
-    "title": "We Belong Together",
-    "artist": "Mariah Carey",
-    "fact": "#1 on Billboard Hot 100 on this day in 2005.",
-    "spotify": "https://open.spotify.com/search/We%20Belong%20Together%20Mariah%20Carey",
-    "youtube": "https://www.youtube.com/results?search_query=We%20Belong%20Together%20Mariah%20Carey"
-  },
-  {
-    "title": "Cheerleader",
-    "artist": "OMI",
-    "fact": "#1 on Billboard Hot 100 on this day in 2015.",
-    "spotify": "https://open.spotify.com/search/Cheerleader%20OMI",
-    "youtube": "https://www.youtube.com/results?search_query=Cheerleader%20OMI"
+    "title": "One Of These Nights",
+    "artist": "Eagles",
+    "fact": "#1 on Billboard Hot 100 on this day in 1975.",
+    "spotify": "https://open.spotify.com/search/One%20Of%20These%20Nights%20Eagles",
+    "youtube": "https://www.youtube.com/results?search_query=One%20Of%20These%20Nights%20Eagles"
   },
   {
     "title": "Shout",
@@ -28,10 +21,17 @@
     "youtube": "https://www.youtube.com/results?search_query=Waterfalls%20TLC"
   },
   {
-    "title": "One Of These Nights",
-    "artist": "Eagles",
-    "fact": "#1 on Billboard Hot 100 on this day in 1975.",
-    "spotify": "https://open.spotify.com/search/One%20Of%20These%20Nights%20Eagles",
-    "youtube": "https://www.youtube.com/results?search_query=One%20Of%20These%20Nights%20Eagles"
+    "title": "We Belong Together",
+    "artist": "Mariah Carey",
+    "fact": "#1 on Billboard Hot 100 on this day in 2005.",
+    "spotify": "https://open.spotify.com/search/We%20Belong%20Together%20Mariah%20Carey",
+    "youtube": "https://www.youtube.com/results?search_query=We%20Belong%20Together%20Mariah%20Carey"
+  },
+  {
+    "title": "Cheerleader",
+    "artist": "OMI",
+    "fact": "#1 on Billboard Hot 100 on this day in 2015.",
+    "spotify": "https://open.spotify.com/search/Cheerleader%20OMI",
+    "youtube": "https://www.youtube.com/results?search_query=Cheerleader%20OMI"
   }
 ]
