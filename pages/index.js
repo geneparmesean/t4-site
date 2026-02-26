@@ -1,50 +1,71 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 
+function getYearFromFact(fact = '') {
+  const match = fact.match(/\b(19|20)\d{2}\b/);
+  return match ? Number(match[0]) : null;
+}
+
 export default function Home({ songs }) {
+  const today = new Date();
+  const formattedDate = new Intl.DateTimeFormat('en-US', {
+    month: 'long',
+    day: 'numeric',
+  }).format(today);
+
+  const sortedSongs = [...songs].sort((a, b) => {
+    const yearA = getYearFromFact(a.fact) ?? 0;
+    const yearB = getYearFromFact(b.fact) ?? 0;
+    return yearA - yearB;
+  });
+
   return (
     <div className={styles.container}>
       <Head>
         <title>Top Track Time Machine</title>
-        <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet" />
+        <meta
+          name="description"
+          content="Explore Billboard #1 songs that ruled this date in different years."
+        />
       </Head>
 
       <header className={styles.header}>
         <h1 className={styles.logo}>Top Track Time Machine</h1>
+        <p className={styles.subtitle}>
+          Billboard Hot 100 #1 songs for <strong>{formattedDate}</strong>, across the decades.
+        </p>
       </header>
 
       <main className={styles.main}>
-        {songs.map((song, index) => (
-          <div key={index} className={styles.songCard}>
-            <h2 className={styles.title}>🎶 {song.title} – {song.artist}</h2>
-            <p className={styles.date}>📅 {song.date}</p>
-            <p className={styles.fact}>💡 {song.fact}</p>
+        <div className={styles.grid}>
+          {sortedSongs.map((song, index) => {
+            const year = getYearFromFact(song.fact);
 
-            <div className={styles.media}>
-              {song.spotifyEmbed && (
-                <iframe
-                  src={song.spotifyEmbed}
-                  width="100%"
-                  height="80"
-                  frameBorder="0"
-                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                  loading="lazy"
-                ></iframe>
-              )}
-              {song.youtubeEmbed && (
-                <iframe
-                  width="100%"
-                  height="200"
-                  src={song.youtubeEmbed}
-                  title="YouTube video player"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
-              )}
-            </div>
-          </div>
-        ))}
+            return (
+              <article key={`${song.title}-${song.artist}-${index}`} className={styles.songCard}>
+                <p className={styles.badge}>{year ? year : 'Classic Hit'}</p>
+                <h2 className={styles.title}>
+                  {song.title}
+                  <span className={styles.artist}> — {song.artist}</span>
+                </h2>
+                <p className={styles.fact}>{song.fact}</p>
+
+                <div className={styles.links}>
+                  {song.spotify && (
+                    <a href={song.spotify} target="_blank" rel="noreferrer">
+                      Open in Spotify
+                    </a>
+                  )}
+                  {song.youtube && (
+                    <a href={song.youtube} target="_blank" rel="noreferrer">
+                      Watch on YouTube
+                    </a>
+                  )}
+                </div>
+              </article>
+            );
+          })}
+        </div>
       </main>
     </div>
   );
@@ -52,6 +73,7 @@ export default function Home({ songs }) {
 
 export async function getStaticProps() {
   const songs = require('../data/todaysSongs.json');
+
   return {
     props: { songs },
   };
