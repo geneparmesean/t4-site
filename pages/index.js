@@ -1,9 +1,16 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 
-function getYearFromFact(fact = '') {
-  const match = fact.match(/\b(19|20)\d{2}\b/);
+function getYear(song = {}) {
+  if (typeof song.year === 'number') return song.year;
+  const match = (song.fact || '').match(/\b(19|20)\d{2}\b/);
   return match ? Number(match[0]) : null;
+}
+
+function getDaysAtNumberOne(song = {}) {
+  if (typeof song.daysAtNumberOne === 'number') return song.daysAtNumberOne;
+  if (typeof song.weeksAtNumberOne === 'number') return song.weeksAtNumberOne * 7;
+  return null;
 }
 
 export default function Home({ songs }) {
@@ -13,11 +20,7 @@ export default function Home({ songs }) {
     day: 'numeric',
   }).format(today);
 
-  const sortedSongs = [...songs].sort((a, b) => {
-    const yearA = getYearFromFact(a.fact) ?? 0;
-    const yearB = getYearFromFact(b.fact) ?? 0;
-    return yearA - yearB;
-  });
+  const sortedSongs = [...songs].sort((a, b) => (getYear(a) ?? 0) - (getYear(b) ?? 0));
 
   return (
     <div className={styles.container}>
@@ -25,25 +28,39 @@ export default function Home({ songs }) {
         <title>Top Track Time Machine</title>
         <meta
           name="description"
-          content="Explore Billboard #1 songs that ruled this date in different years."
+          content="Explore Billboard #1 songs that ruled this date every year since 1975."
         />
       </Head>
 
       <header className={styles.header}>
         <h1 className={styles.logo}>Top Track Time Machine</h1>
         <p className={styles.subtitle}>
-          Billboard Hot 100 #1 songs for <strong>{formattedDate}</strong>, across the decades.
+          Billboard Hot 100 #1 songs for <strong>{formattedDate}</strong>, every year since 1975.
         </p>
       </header>
 
       <main className={styles.main}>
         <div className={styles.grid}>
           {sortedSongs.map((song, index) => {
-            const year = getYearFromFact(song.fact);
+            const year = getYear(song);
+            const daysAtNumberOne = getDaysAtNumberOne(song);
 
             return (
-              <article key={`${song.title}-${song.artist}-${index}`} className={styles.songCard}>
-                <p className={styles.badge}>{year ? year : 'Classic Hit'}</p>
+              <article key={`${song.title}-${song.artist}-${year ?? index}`} className={styles.songCard}>
+                {song.coverArt && (
+                  <img
+                    src={song.coverArt}
+                    alt={`Cover art for ${song.title} by ${song.artist}`}
+                    className={styles.coverArt}
+                    loading="lazy"
+                  />
+                )}
+                <div className={styles.cardHeader}>
+                  <p className={styles.badge}>{year ?? 'Unknown Year'}</p>
+                  <p className={styles.dayCount}>
+                    {daysAtNumberOne ? `Day ${daysAtNumberOne} at #1` : 'Day count at #1 unavailable'}
+                  </p>
+                </div>
                 <h2 className={styles.title}>
                   {song.title}
                   <span className={styles.artist}> — {song.artist}</span>

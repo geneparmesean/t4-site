@@ -4,34 +4,54 @@
     "artist": "Eagles",
     "fact": "#1 on Billboard Hot 100 on this day in 1975.",
     "spotify": "https://open.spotify.com/search/One%20Of%20These%20Nights%20Eagles",
-    "youtube": "https://www.youtube.com/results?search_query=One%20Of%20These%20Nights%20Eagles"
+    "youtube": "https://www.youtube.com/results?search_query=One%20Of%20These%20Nights%20Eagles",
+    "year": 1975,
+    "daysAtNumberOne": null,
+    "weeksAtNumberOne": 0,
+    "coverArt": null
   },
   {
     "title": "Shout",
     "artist": "Tears For Fears",
     "fact": "#1 on Billboard Hot 100 on this day in 1985.",
     "spotify": "https://open.spotify.com/search/Shout%20Tears%20For%20Fears",
-    "youtube": "https://www.youtube.com/results?search_query=Shout%20Tears%20For%20Fears"
+    "youtube": "https://www.youtube.com/results?search_query=Shout%20Tears%20For%20Fears",
+    "year": 1985,
+    "daysAtNumberOne": null,
+    "weeksAtNumberOne": 0,
+    "coverArt": null
   },
   {
     "title": "Waterfalls",
     "artist": "TLC",
     "fact": "#1 on Billboard Hot 100 on this day in 1995.",
     "spotify": "https://open.spotify.com/search/Waterfalls%20TLC",
-    "youtube": "https://www.youtube.com/results?search_query=Waterfalls%20TLC"
+    "youtube": "https://www.youtube.com/results?search_query=Waterfalls%20TLC",
+    "year": 1995,
+    "daysAtNumberOne": null,
+    "weeksAtNumberOne": 0,
+    "coverArt": null
   },
   {
     "title": "We Belong Together",
     "artist": "Mariah Carey",
     "fact": "#1 on Billboard Hot 100 on this day in 2005.",
     "spotify": "https://open.spotify.com/search/We%20Belong%20Together%20Mariah%20Carey",
-    "youtube": "https://www.youtube.com/results?search_query=We%20Belong%20Together%20Mariah%20Carey"
+    "youtube": "https://www.youtube.com/results?search_query=We%20Belong%20Together%20Mariah%20Carey",
+    "year": 2005,
+    "daysAtNumberOne": null,
+    "weeksAtNumberOne": 0,
+    "coverArt": null
   },
   {
     "title": "Cheerleader",
     "artist": "OMI",
     "fact": "#1 on Billboard Hot 100 on this day in 2015.",
     "spotify": "https://open.spotify.com/search/Cheerleader%20OMI",
-    "youtube": "https://www.youtube.com/results?search_query=Cheerleader%20OMI"
+    "youtube": "https://www.youtube.com/results?search_query=Cheerleader%20OMI",
+    "year": 2015,
+    "daysAtNumberOne": null,
+    "weeksAtNumberOne": 0,
+    "coverArt": null
   }
 ]
