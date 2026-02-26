@@ -22,14 +22,14 @@ export default function Home({ songs }) {
         <title>Top Track Time Machine</title>
         <meta
           name="description"
-          content="Explore Billboard #1 songs that ruled this date every year since 1975."
+          content="Explore Billboard #1 songs that ruled this date every 5 years since 1975, plus today."
         />
       </Head>
 
       <header className={styles.header}>
         <h1 className={styles.logo}>Top Track Time Machine</h1>
         <p className={styles.subtitle}>
-          Billboard Hot 100 #1 songs for <strong>{formattedDate}</strong>, every year since 1975.
+          Billboard Hot 100 #1 songs for <strong>{formattedDate}</strong>, every 5 years since 1975 (plus today).
         </p>
       </header>
 
