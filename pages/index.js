@@ -7,12 +7,6 @@ function getYear(song = {}) {
   return match ? Number(match[0]) : null;
 }
 
-function getDaysAtNumberOne(song = {}) {
-  if (typeof song.daysAtNumberOne === 'number') return song.daysAtNumberOne;
-  if (typeof song.weeksAtNumberOne === 'number') return song.weeksAtNumberOne * 7;
-  return null;
-}
-
 export default function Home({ songs }) {
   const today = new Date();
   const formattedDate = new Intl.DateTimeFormat('en-US', {
@@ -43,7 +37,6 @@ export default function Home({ songs }) {
         <div className={styles.grid}>
           {sortedSongs.map((song, index) => {
             const year = getYear(song);
-            const daysAtNumberOne = getDaysAtNumberOne(song);
 
             return (
               <article key={`${song.title}-${song.artist}-${year ?? index}`} className={styles.songCard}>
@@ -57,9 +50,6 @@ export default function Home({ songs }) {
                 )}
                 <div className={styles.cardHeader}>
                   <p className={styles.badge}>{year ?? 'Unknown Year'}</p>
-                  <p className={styles.dayCount}>
-                    {daysAtNumberOne ? `Day ${daysAtNumberOne} at #1` : 'Day count at #1 unavailable'}
-                  </p>
                 </div>
                 <h2 className={styles.title}>
                   {song.title}
