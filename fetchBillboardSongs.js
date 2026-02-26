@@ -7,7 +7,6 @@ try {
 const fs = require('fs');
 const path = require('path');
 
-
 if (!billboard) {
   console.error(
     'Missing optional dependency "billboard-top-100". Install it before running fetch:songs, or use the checked-in data/todaysSongs.json.',
@@ -20,6 +19,7 @@ const today = new Date();
 const month = String(today.getMonth() + 1).padStart(2, '0');
 const day = String(today.getDate()).padStart(2, '0');
 const endYear = today.getFullYear();
+const MAX_DATE_OFFSET_DAYS = 6;
 
 function getChart(chartDate) {
   return new Promise((resolve, reject) => {
@@ -31,6 +31,37 @@ function getChart(chartDate) {
       resolve(chart);
     });
   });
+}
+
+function addDays(isoDate, offset) {
+  const [y, m, d] = isoDate.split('-').map(Number);
+  const dt = new Date(Date.UTC(y, m - 1, d));
+  dt.setUTCDate(dt.getUTCDate() + offset);
+  return dt.toISOString().slice(0, 10);
+}
+
+async function getChartWithFallback(baseDate) {
+  const offsets = [0];
+  for (let i = 1; i <= MAX_DATE_OFFSET_DAYS; i += 1) {
+    offsets.push(i, -i);
+  }
+
+  for (const offset of offsets) {
+    const candidate = addDays(baseDate, offset);
+    try {
+      const chart = await getChart(candidate);
+      return {
+        chart,
+        requestedDate: baseDate,
+        resolvedDate: candidate,
+        offset,
+      };
+    } catch (error) {
+      // Try next nearby date.
+    }
+  }
+
+  throw new Error(`No chart found within ±${MAX_DATE_OFFSET_DAYS} days of ${baseDate}`);
 }
 
 async function fetchCoverArt(title, artist) {
@@ -50,12 +81,13 @@ async function fetchCoverArt(title, artist) {
 
 async function run() {
   const results = [];
+  const failures = [];
 
   for (let year = START_YEAR; year <= endYear; year += 1) {
     const dateString = `${year}-${month}-${day}`;
 
     try {
-      const chart = await getChart(dateString);
+      const { chart, resolvedDate, offset } = await getChartWithFallback(dateString);
       const topSong = chart.songs[0];
 
       const weeksAtNumberOne = Number(
@@ -77,10 +109,25 @@ async function run() {
         youtube: `https://www.youtube.com/results?search_query=${encodeURIComponent(`${topSong.title} ${topSong.artist}`)}`,
       });
 
-      console.log(`Fetched ${year}: ${topSong.title} — ${topSong.artist}`);
+      if (offset === 0) {
+        console.log(`Fetched ${year}: ${topSong.title} — ${topSong.artist}`);
+      } else {
+        console.log(
+          `Fetched ${year}: ${topSong.title} — ${topSong.artist} (resolved ${resolvedDate}, offset ${offset > 0 ? '+' : ''}${offset}d)`,
+        );
+      }
     } catch (error) {
+      failures.push({ year, dateString, error: error.message || String(error) });
       console.error(`Failed to fetch chart for ${dateString}:`, error.message || error);
     }
+  }
+
+  if (failures.length > 0) {
+    console.error(`\nAborting write: missing ${failures.length} years.`);
+    failures.forEach((failure) => {
+      console.error(`- ${failure.year} (${failure.dateString}): ${failure.error}`);
+    });
+    process.exit(1);
   }
 
   const filePath = path.join(__dirname, 'data', 'todaysSongs.json');
