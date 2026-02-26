@@ -53,5 +53,16 @@
     "daysAtNumberOne": null,
     "weeksAtNumberOne": 0,
     "coverArt": null
+  },
+  {
+    "title": "Luther",
+    "artist": "Kendrick Lamar & SZA",
+    "fact": "#1 on Billboard Hot 100 on this day in 2025.",
+    "spotify": "https://open.spotify.com/search/Luther%20Kendrick%20Lamar%20SZA",
+    "youtube": "https://www.youtube.com/results?search_query=Luther%20Kendrick%20Lamar%20SZA",
+    "year": 2025,
+    "daysAtNumberOne": null,
+    "weeksAtNumberOne": 0,
+    "coverArt": null
   }
 ]
