@@ -35,6 +35,17 @@
   color: #ccd8f7;
 }
 
+.notice {
+  margin: 0.85rem auto 0;
+  max-width: 720px;
+  padding: 0.75rem 0.9rem;
+  border-radius: 10px;
+  border: 1px solid rgba(162, 191, 255, 0.38);
+  background: rgba(16, 22, 54, 0.35);
+  color: #dce7ff;
+  font-size: 0.95rem;
+}
+
 .main {
   max-width: 960px;
   margin: 0 auto;

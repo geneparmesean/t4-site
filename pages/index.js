@@ -15,6 +15,7 @@ export default function Home({ songs }) {
   }).format(today);
 
   const sortedSongs = [...songs].sort((a, b) => (getYear(a) ?? 0) - (getYear(b) ?? 0));
+  const missingYears = songs.filter((song) => song.title === 'Data unavailable').length;
 
   return (
     <div className={styles.container}>
@@ -22,7 +23,7 @@ export default function Home({ songs }) {
         <title>Top Track Time Machine</title>
         <meta
           name="description"
-          content="Explore Billboard #1 songs that ruled this date every year since 1975."
+          content="Explore Billboard #1 songs for this date, with placeholders where chart data has not been fetched yet."
         />
       </Head>
 
@@ -31,6 +32,12 @@ export default function Home({ songs }) {
         <p className={styles.subtitle}>
           Billboard Hot 100 #1 songs for <strong>{formattedDate}</strong>, every year since 1975.
         </p>
+        {missingYears > 0 && (
+          <p className={styles.notice}>
+            This build currently ships with sample chart data. Years marked “Data unavailable” will fill
+            in after running the chart fetch script with API access.
+          </p>
+        )}
       </header>
 
       <main className={styles.main}>
