@@ -1,18 +1,5 @@
-let billboard = null;
-try {
-  billboard = require('billboard-top-100');
-} catch (error) {
-  // Optional dependency: this script can only fetch fresh chart data when installed.
-}
 const fs = require('fs');
 const path = require('path');
-
-if (!billboard) {
-  console.error(
-    'Missing optional dependency "billboard-top-100". Install it before running fetch:songs, or use the checked-in data/todaysSongs.json.',
-  );
-  process.exit(1);
-}
 
 const START_YEAR = 1975;
 const today = new Date();
@@ -20,17 +7,98 @@ const month = String(today.getMonth() + 1).padStart(2, '0');
 const day = String(today.getDate()).padStart(2, '0');
 const endYear = today.getFullYear();
 const MAX_DATE_OFFSET_DAYS = 6;
+const BILLBOARD_PROVIDER = process.env.BILLBOARD_PROVIDER || 'auto';
 
-function getChart(chartDate) {
-  return new Promise((resolve, reject) => {
-    billboard.getChart('hot-100', chartDate, (error, chart) => {
-      if (error) {
-        reject(error);
-        return;
+function createTop100Client() {
+  let billboard = null;
+  try {
+    billboard = require('billboard-top-100');
+  } catch (error) {
+    return null;
+  }
+
+  return {
+    name: 'billboard-top-100',
+    async getChart(chartDate) {
+      return new Promise((resolve, reject) => {
+        billboard.getChart('hot-100', chartDate, (error, chart) => {
+          if (error) {
+            reject(error);
+            return;
+          }
+          resolve(chart);
+        });
+      });
+    },
+  };
+}
+
+function toRapidApiTopSong(payload) {
+  const item = payload?.content?.[1] || payload?.content?.['1'] || payload?.data?.[0];
+
+  const title = item?.song || item?.title || item?.name;
+  const artist = item?.artist;
+  if (!title || !artist) return null;
+
+  return { title, artist };
+}
+
+function createRapidApiClient() {
+  const key = process.env.BILLBOARD_RAPIDAPI_KEY;
+  if (!key) return null;
+
+  const host = process.env.BILLBOARD_RAPIDAPI_HOST || 'billboard-api2.p.rapidapi.com';
+
+  return {
+    name: `rapidapi:${host}`,
+    async getChart(chartDate) {
+      const url = `https://${host}/hot-100?date=${chartDate}&range=1-1`;
+      const response = await fetch(url, {
+        headers: {
+          'x-rapidapi-key': key,
+          'x-rapidapi-host': host,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`RapidAPI request failed (${response.status})`);
       }
-      resolve(chart);
-    });
-  });
+
+      const payload = await response.json();
+      const topSong = toRapidApiTopSong(payload);
+      if (!topSong) {
+        throw new Error('RapidAPI payload did not include a #1 song');
+      }
+
+      return {
+        date: chartDate,
+        songs: [topSong],
+      };
+    },
+  };
+}
+
+function getChartClient() {
+  const rapidApiClient = createRapidApiClient();
+  const top100Client = createTop100Client();
+
+  if (BILLBOARD_PROVIDER === 'rapidapi') {
+    if (!rapidApiClient) {
+      throw new Error('BILLBOARD_PROVIDER=rapidapi requires BILLBOARD_RAPIDAPI_KEY.');
+    }
+    return rapidApiClient;
+  }
+
+  if (BILLBOARD_PROVIDER === 'billboard-top-100') {
+    if (!top100Client) {
+      throw new Error(
+        'BILLBOARD_PROVIDER=billboard-top-100 requires optional dependency "billboard-top-100" to be installed.',
+      );
+    }
+    return top100Client;
+  }
+
+  return rapidApiClient || top100Client;
 }
 
 function addDays(isoDate, offset) {
@@ -40,7 +108,7 @@ function addDays(isoDate, offset) {
   return dt.toISOString().slice(0, 10);
 }
 
-async function getChartWithFallback(baseDate) {
+async function getChartWithFallback(getChart, baseDate) {
   const offsets = [0];
   for (let i = 1; i <= MAX_DATE_OFFSET_DAYS; i += 1) {
     offsets.push(i, -i);
@@ -80,6 +148,21 @@ async function fetchCoverArt(title, artist) {
 }
 
 async function run() {
+  const chartClient = getChartClient();
+  if (!chartClient) {
+    console.error(
+      [
+        'No chart provider is available.',
+        'Use one of:',
+        '- BILLBOARD_RAPIDAPI_KEY=<key> npm run fetch:songs',
+        '- npm install billboard-top-100 && npm run fetch:songs',
+      ].join('\n'),
+    );
+    process.exit(1);
+  }
+
+  console.log(`Using chart provider: ${chartClient.name}`);
+
   const results = [];
   const failures = [];
 
@@ -87,7 +170,10 @@ async function run() {
     const dateString = `${year}-${month}-${day}`;
 
     try {
-      const { chart, resolvedDate, offset } = await getChartWithFallback(dateString);
+      const { chart, resolvedDate, offset } = await getChartWithFallback(
+        chartClient.getChart,
+        dateString,
+      );
       const topSong = chart.songs[0];
 
       const weeksAtNumberOne = Number(
