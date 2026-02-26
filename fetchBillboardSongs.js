@@ -1,6 +1,19 @@
-const billboard = require('billboard-top-100');
+let billboard = null;
+try {
+  billboard = require('billboard-top-100');
+} catch (error) {
+  // Optional dependency: this script can only fetch fresh chart data when installed.
+}
 const fs = require('fs');
 const path = require('path');
+
+
+if (!billboard) {
+  console.error(
+    'Missing optional dependency "billboard-top-100". Install it before running fetch:songs, or use the checked-in data/todaysSongs.json.',
+  );
+  process.exit(1);
+}
 
 const START_YEAR = 1975;
 const today = new Date();
