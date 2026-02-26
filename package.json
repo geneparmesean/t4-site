@@ -10,7 +10,8 @@
   "dependencies": {
     "next": "latest",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "billboard-top-100": "^4.1.0"
   },
   "engines": {
     "node": ">=20.9.0"
