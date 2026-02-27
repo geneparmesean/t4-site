@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const dns = require('dns');
 
 const START_YEAR = 1975;
 const today = new Date();
@@ -8,6 +9,34 @@ const day = String(today.getDate()).padStart(2, '0');
 const endYear = today.getFullYear();
 const MAX_DATE_OFFSET_DAYS = 6;
 const BILLBOARD_PROVIDER = process.env.BILLBOARD_PROVIDER || 'auto';
+const NETWORK_RETRIES = 3;
+
+dns.setDefaultResultOrder('ipv4first');
+
+async function fetchWithRetry(url, options = {}) {
+  let lastError;
+
+  for (let attempt = 1; attempt <= NETWORK_RETRIES; attempt += 1) {
+    try {
+      return await fetch(url, options);
+    } catch (error) {
+      lastError = error;
+      const retryable =
+        error?.code === 'ENETUNREACH' ||
+        error?.code === 'ETIMEDOUT' ||
+        error?.cause?.code === 'ENETUNREACH' ||
+        error?.cause?.code === 'ETIMEDOUT';
+
+      if (!retryable || attempt === NETWORK_RETRIES) {
+        throw error;
+      }
+
+      await new Promise((resolve) => setTimeout(resolve, attempt * 500));
+    }
+  }
+
+  throw lastError;
+}
 
 function createTop100Client() {
   let billboard = null;
@@ -53,7 +82,7 @@ function createRapidApiClient() {
     name: `rapidapi:${host}`,
     async getChart(chartDate) {
       const url = `https://${host}/hot-100?date=${chartDate}&range=1-1`;
-      const response = await fetch(url, {
+      const response = await fetchWithRetry(url, {
         headers: {
           'x-rapidapi-key': key,
           'x-rapidapi-host': host,
@@ -78,9 +107,56 @@ function createRapidApiClient() {
   };
 }
 
+function toLastFmTopSong(payload) {
+  const track = payload?.tracks?.track?.[0];
+  const title = track?.name;
+  const artist = track?.artist?.name;
+
+  if (!title || !artist) return null;
+  return { title, artist };
+}
+
+function createLastFmClient() {
+  const key = process.env.LASTFM_API_KEY;
+  if (!key) return null;
+
+  const country = process.env.LASTFM_COUNTRY || 'United States';
+  const baseUrl = 'https://ws.audioscrobbler.com/2.0/';
+
+  return {
+    name: `lastfm:${country}`,
+    async getChart(chartDate) {
+      const params = new URLSearchParams({
+        method: 'geo.gettoptracks',
+        country,
+        limit: '1',
+        api_key: key,
+        format: 'json',
+      });
+
+      const response = await fetchWithRetry(`${baseUrl}?${params.toString()}`);
+      if (!response.ok) {
+        throw new Error(`Last.fm request failed (${response.status})`);
+      }
+
+      const payload = await response.json();
+      const topSong = toLastFmTopSong(payload);
+      if (!topSong) {
+        throw new Error('Last.fm payload did not include a top song');
+      }
+
+      return {
+        date: chartDate,
+        songs: [topSong],
+      };
+    },
+  };
+}
+
 function getChartClient() {
   const rapidApiClient = createRapidApiClient();
   const top100Client = createTop100Client();
+  const lastFmClient = createLastFmClient();
 
   if (BILLBOARD_PROVIDER === 'rapidapi') {
     if (!rapidApiClient) {
@@ -98,7 +174,14 @@ function getChartClient() {
     return top100Client;
   }
 
-  return rapidApiClient || top100Client;
+  if (BILLBOARD_PROVIDER === 'lastfm') {
+    if (!lastFmClient) {
+      throw new Error('BILLBOARD_PROVIDER=lastfm requires LASTFM_API_KEY.');
+    }
+    return lastFmClient;
+  }
+
+  return rapidApiClient || top100Client || lastFmClient;
 }
 
 function addDays(isoDate, offset) {
@@ -137,7 +220,7 @@ async function fetchCoverArt(title, artist) {
   const url = `https://itunes.apple.com/search?term=${query}&media=music&entity=song&limit=1`;
 
   try {
-    const response = await fetch(url);
+    const response = await fetchWithRetry(url);
     if (!response.ok) return null;
     const payload = await response.json();
     const artwork = payload?.results?.[0]?.artworkUrl100;
@@ -156,6 +239,7 @@ async function run() {
         'Use one of:',
         '- BILLBOARD_RAPIDAPI_KEY=<key> npm run fetch:songs',
         '- npm install billboard-top-100 && npm run fetch:songs',
+        '- BILLBOARD_PROVIDER=lastfm LASTFM_API_KEY=<key> npm run fetch:songs',
       ].join('\n'),
     );
     process.exit(1);

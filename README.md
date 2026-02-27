@@ -20,40 +20,52 @@ npm run start
 
 ## Refreshing chart data
 
-To update `data/todaysSongs.json` with fresh Billboard chart data, use either provider:
+To fetch Billboard songs and refresh `data/todaysSongs.json`:
 
-### Option A (recommended): RapidAPI (no npm package required)
+1. Install dependencies:
 
 ```bash
-BILLBOARD_RAPIDAPI_KEY=your_key_here npm run fetch:songs
+npm install
 ```
 
-Optional overrides:
+2. Run the fetch script with one of the providers below.
+
+### Option A (recommended): RapidAPI
+
+```bash
+BILLBOARD_PROVIDER=rapidapi BILLBOARD_RAPIDAPI_KEY=your_key_here npm run fetch:songs
+```
+
+Optional host override (only if your RapidAPI subscription uses a different host):
 
 ```bash
 BILLBOARD_PROVIDER=rapidapi BILLBOARD_RAPIDAPI_HOST=billboard-api2.p.rapidapi.com BILLBOARD_RAPIDAPI_KEY=your_key_here npm run fetch:songs
 ```
 
-### Option B: legacy `billboard-top-100` package
+### Option B: `billboard-top-100` package
 
 ```bash
 npm install billboard-top-100
 BILLBOARD_PROVIDER=billboard-top-100 npm run fetch:songs
 ```
 
-If your environment enforces outbound package/network policies, run the fetch script
-from an environment with API/network access and commit the updated
-To update `data/todaysSongs.json` with fresh Billboard chart data, run:
+### Option C: Last.fm (geo top tracks)
 
 ```bash
-npm install billboard-top-100
-npm run fetch:songs
+BILLBOARD_PROVIDER=lastfm LASTFM_API_KEY=your_key_here npm run fetch:songs
 ```
 
-If your environment enforces outbound package/network policies, `billboard-top-100`
-and external chart requests may be blocked with `403 Forbidden`. In that case, run
-the fetch script from an environment with API/network access and commit the updated
-`data/todaysSongs.json` back to this repository.
+Optional country override:
+
+```bash
+BILLBOARD_PROVIDER=lastfm LASTFM_API_KEY=your_key_here LASTFM_COUNTRY="United States" npm run fetch:songs
+```
+
+Note: Last.fm uses current geo top tracks and does not provide historical chart-by-date parity with Billboard Hot 100.
+
+When the script succeeds, it writes updated results to `data/todaysSongs.json`.
+
+If your environment blocks external API access, run the script in an environment with outbound network access and then commit the updated `data/todaysSongs.json` back to this repository.
 
 ## Deploy (Vercel)
 
