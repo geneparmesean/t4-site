@@ -230,6 +230,30 @@ async function fetchCoverArt(title, artist) {
   }
 }
 
+
+function createUnavailableEntry(year) {
+  return {
+    year,
+    title: 'Data unavailable',
+    artist: 'Billboard Hot 100',
+    fact: `#1 on Billboard Hot 100 data for this day in ${year} is unavailable in this build.`,
+    spotify: null,
+    youtube: null,
+    daysAtNumberOne: null,
+    weeksAtNumberOne: null,
+    coverArt: null,
+  };
+}
+
+function loadExistingSongsByYear(filePath) {
+  try {
+    const existing = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+    return new Map(existing.map((song) => [song.year, song]));
+  } catch (error) {
+    return new Map();
+  }
+}
+
 async function run() {
   const chartClient = getChartClient();
   if (!chartClient) {
@@ -247,7 +271,10 @@ async function run() {
 
   console.log(`Using chart provider: ${chartClient.name}`);
 
-  const results = [];
+  const filePath = path.join(__dirname, 'data', 'todaysSongs.json');
+  const existingSongsByYear = loadExistingSongsByYear(filePath);
+
+  const resultsByYear = new Map();
   const failures = [];
 
   for (let year = START_YEAR; year <= endYear; year += 1) {
@@ -266,7 +293,7 @@ async function run() {
 
       const coverArt = await fetchCoverArt(topSong.title, topSong.artist);
 
-      results.push({
+      resultsByYear.set(year, {
         year,
         date: chart.date,
         title: topSong.title,
@@ -293,17 +320,31 @@ async function run() {
   }
 
   if (failures.length > 0) {
-    console.error(`\nAborting write: missing ${failures.length} years.`);
+    console.warn(`Chart fetch failed for ${failures.length} years. Keeping existing entries or placeholders for those years.`);
     failures.forEach((failure) => {
-      console.error(`- ${failure.year} (${failure.dateString}): ${failure.error}`);
+      console.warn(`- ${failure.year} (${failure.dateString}): ${failure.error}`);
+
+      if (!resultsByYear.has(failure.year)) {
+        const fallbackEntry = existingSongsByYear.get(failure.year) || createUnavailableEntry(failure.year);
+        resultsByYear.set(failure.year, fallbackEntry);
+      }
     });
-    process.exit(1);
   }
 
-  const filePath = path.join(__dirname, 'data', 'todaysSongs.json');
+  for (let year = START_YEAR; year <= endYear; year += 1) {
+    if (!resultsByYear.has(year)) {
+      const fallbackEntry = existingSongsByYear.get(year) || createUnavailableEntry(year);
+      resultsByYear.set(year, fallbackEntry);
+    }
+  }
+
+  const results = Array.from(resultsByYear.values()).sort((a, b) => a.year - b.year);
+
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
   fs.writeFileSync(filePath, JSON.stringify(results, null, 2), 'utf8');
-  console.log(`Saved ${results.length} entries to ${filePath}`);
+  const resolvedCount = results.filter((song) => song.title !== 'Data unavailable').length;
+  console.log(`Saved ${results.length} entries to ${filePath} (${resolvedCount} resolved, ${results.length - resolvedCount} unavailable)`);
+
 }
 
 run();
