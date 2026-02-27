@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const dns = require('dns');
 
 const START_YEAR = 1975;
 const today = new Date();
@@ -8,6 +9,34 @@ const day = String(today.getDate()).padStart(2, '0');
 const endYear = today.getFullYear();
 const MAX_DATE_OFFSET_DAYS = 6;
 const BILLBOARD_PROVIDER = process.env.BILLBOARD_PROVIDER || 'auto';
+const NETWORK_RETRIES = 3;
+
+dns.setDefaultResultOrder('ipv4first');
+
+async function fetchWithRetry(url, options = {}) {
+  let lastError;
+
+  for (let attempt = 1; attempt <= NETWORK_RETRIES; attempt += 1) {
+    try {
+      return await fetch(url, options);
+    } catch (error) {
+      lastError = error;
+      const retryable =
+        error?.code === 'ENETUNREACH' ||
+        error?.code === 'ETIMEDOUT' ||
+        error?.cause?.code === 'ENETUNREACH' ||
+        error?.cause?.code === 'ETIMEDOUT';
+
+      if (!retryable || attempt === NETWORK_RETRIES) {
+        throw error;
+      }
+
+      await new Promise((resolve) => setTimeout(resolve, attempt * 500));
+    }
+  }
+
+  throw lastError;
+}
 
 function createTop100Client() {
   let billboard = null;
@@ -53,7 +82,7 @@ function createRapidApiClient() {
     name: `rapidapi:${host}`,
     async getChart(chartDate) {
       const url = `https://${host}/hot-100?date=${chartDate}&range=1-1`;
-      const response = await fetch(url, {
+      const response = await fetchWithRetry(url, {
         headers: {
           'x-rapidapi-key': key,
           'x-rapidapi-host': host,
@@ -137,7 +166,7 @@ async function fetchCoverArt(title, artist) {
   const url = `https://itunes.apple.com/search?term=${query}&media=music&entity=song&limit=1`;
 
   try {
-    const response = await fetch(url);
+    const response = await fetchWithRetry(url);
     if (!response.ok) return null;
     const payload = await response.json();
     const artwork = payload?.results?.[0]?.artworkUrl100;
