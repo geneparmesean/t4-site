@@ -107,9 +107,56 @@ function createRapidApiClient() {
   };
 }
 
+function toLastFmTopSong(payload) {
+  const track = payload?.tracks?.track?.[0];
+  const title = track?.name;
+  const artist = track?.artist?.name;
+
+  if (!title || !artist) return null;
+  return { title, artist };
+}
+
+function createLastFmClient() {
+  const key = process.env.LASTFM_API_KEY;
+  if (!key) return null;
+
+  const country = process.env.LASTFM_COUNTRY || 'United States';
+  const baseUrl = 'https://ws.audioscrobbler.com/2.0/';
+
+  return {
+    name: `lastfm:${country}`,
+    async getChart(chartDate) {
+      const params = new URLSearchParams({
+        method: 'geo.gettoptracks',
+        country,
+        limit: '1',
+        api_key: key,
+        format: 'json',
+      });
+
+      const response = await fetchWithRetry(`${baseUrl}?${params.toString()}`);
+      if (!response.ok) {
+        throw new Error(`Last.fm request failed (${response.status})`);
+      }
+
+      const payload = await response.json();
+      const topSong = toLastFmTopSong(payload);
+      if (!topSong) {
+        throw new Error('Last.fm payload did not include a top song');
+      }
+
+      return {
+        date: chartDate,
+        songs: [topSong],
+      };
+    },
+  };
+}
+
 function getChartClient() {
   const rapidApiClient = createRapidApiClient();
   const top100Client = createTop100Client();
+  const lastFmClient = createLastFmClient();
 
   if (BILLBOARD_PROVIDER === 'rapidapi') {
     if (!rapidApiClient) {
@@ -127,7 +174,14 @@ function getChartClient() {
     return top100Client;
   }
 
-  return rapidApiClient || top100Client;
+  if (BILLBOARD_PROVIDER === 'lastfm') {
+    if (!lastFmClient) {
+      throw new Error('BILLBOARD_PROVIDER=lastfm requires LASTFM_API_KEY.');
+    }
+    return lastFmClient;
+  }
+
+  return rapidApiClient || top100Client || lastFmClient;
 }
 
 function addDays(isoDate, offset) {
@@ -185,6 +239,7 @@ async function run() {
         'Use one of:',
         '- BILLBOARD_RAPIDAPI_KEY=<key> npm run fetch:songs',
         '- npm install billboard-top-100 && npm run fetch:songs',
+        '- BILLBOARD_PROVIDER=lastfm LASTFM_API_KEY=<key> npm run fetch:songs',
       ].join('\n'),
     );
     process.exit(1);

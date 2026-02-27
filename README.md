@@ -39,8 +39,29 @@ BILLBOARD_PROVIDER=rapidapi BILLBOARD_RAPIDAPI_KEY=your_key_here npm run fetch:s
 Optional host override (only if your RapidAPI subscription uses a different host):
 
 ```bash
+BILLBOARD_PROVIDER=rapidapi BILLBOARD_RAPIDAPI_KEY=your_key_here npm run fetch:songs
+```
+
+### Option B: `billboard-top-100` package
+Optional host override (only if your RapidAPI subscription uses a different host):
+
+```bash
 BILLBOARD_PROVIDER=rapidapi BILLBOARD_RAPIDAPI_HOST=billboard-api2.p.rapidapi.com BILLBOARD_RAPIDAPI_KEY=your_key_here npm run fetch:songs
 ```
+
+### Option C: Last.fm (geo top tracks)
+
+```bash
+BILLBOARD_PROVIDER=lastfm LASTFM_API_KEY=your_key_here npm run fetch:songs
+```
+
+Optional country override:
+
+```bash
+BILLBOARD_PROVIDER=lastfm LASTFM_API_KEY=your_key_here LASTFM_COUNTRY="United States" npm run fetch:songs
+```
+
+Note: Last.fm uses current geo top tracks and does not provide historical chart-by-date parity with Billboard Hot 100.
 
 ### Option B: `billboard-top-100` package
 
