@@ -35,7 +35,7 @@ export default function Home({ songs }) {
             date: result?.chartDate || null,
             title,
             artist,
-            coverArt: result?.coverArt || null,
+            coverArt: null,
             weeksAtNumberOne: null,
             daysAtNumberOne: null,
             fact: `#1 on Billboard Hot 100 on this day in ${year}.`,
