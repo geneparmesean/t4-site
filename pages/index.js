@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import { useEffect, useMemo, useState } from 'react';
 import styles from '../styles/Home.module.css';
 
 function getYear(song = {}) {
@@ -8,14 +9,65 @@ function getYear(song = {}) {
 }
 
 export default function Home({ songs }) {
+  const [liveSongs, setLiveSongs] = useState(null);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function loadTodayInHistory() {
+      try {
+        const response = await fetch('/api/today-in-history');
+        if (!response.ok) return;
+
+        const payload = await response.json();
+        const liveResults = Array.isArray(payload?.results) ? payload.results : [];
+        const byYear = new Map(songs.map((song) => [song.year, song]));
+
+        liveResults.forEach((result) => {
+          const title = result?.song;
+          const artist = result?.artist;
+          const year = Number(result?.year);
+
+          if (!title || !artist || !Number.isFinite(year)) return;
+
+          byYear.set(year, {
+            year,
+            date: result?.chartDate || null,
+            title,
+            artist,
+            coverArt: null,
+            weeksAtNumberOne: null,
+            daysAtNumberOne: null,
+            fact: `#1 on Billboard Hot 100 on this day in ${year}.`,
+            spotify: `https://open.spotify.com/search/${encodeURIComponent(`${title} ${artist}`)}`,
+            youtube: `https://www.youtube.com/results?search_query=${encodeURIComponent(`${title} ${artist}`)}`,
+          });
+        });
+
+        if (!cancelled) {
+          setLiveSongs(Array.from(byYear.values()));
+        }
+      } catch (error) {
+        // Keep static fallback data when runtime fetch is unavailable.
+      }
+    }
+
+    loadTodayInHistory();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [songs]);
+
   const today = new Date();
   const formattedDate = new Intl.DateTimeFormat('en-US', {
     month: 'long',
     day: 'numeric',
   }).format(today);
 
-  const sortedSongs = [...songs].sort((a, b) => (getYear(a) ?? 0) - (getYear(b) ?? 0));
-  const missingYears = songs.filter((song) => song.title === 'Data unavailable').length;
+  const displayedSongs = useMemo(() => liveSongs || songs, [liveSongs, songs]);
+  const sortedSongs = [...displayedSongs].sort((a, b) => (getYear(a) ?? 0) - (getYear(b) ?? 0));
+  const missingYears = displayedSongs.filter((song) => song.title === 'Data unavailable').length;
 
   return (
     <div className={styles.container}>
