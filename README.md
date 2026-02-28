@@ -20,83 +20,21 @@ npm run start
 
 ## Refreshing chart data
 
-To fetch Billboard songs and refresh `data/todaysSongs.json`:
+This project now uses [`mhollingshead/billboard-hot-100`](https://github.com/mhollingshead/billboard-hot-100) as the source-of-truth table for daily #1 songs.
 
-1. Install dependencies:
-
-```bash
-npm install
-```
-
-2. Run the fetch script with one of the providers below.
-
-### Option A (recommended): RapidAPI
+To refresh `data/todaysSongs.json`:
 
 ```bash
-BILLBOARD_PROVIDER=rapidapi BILLBOARD_RAPIDAPI_KEY=your_key_here npm run fetch:songs
+npm run fetch:songs
 ```
 
-```
+The script will:
 
-2. Run the fetch script with one of the providers below.
-
-### Option A (recommended): RapidAPI
-
-```bash
-BILLBOARD_PROVIDER=rapidapi BILLBOARD_RAPIDAPI_KEY=your_key_here npm run fetch:songs
-```
-
-Optional host override (only if your RapidAPI subscription uses a different host):
-
-```bash
-BILLBOARD_PROVIDER=rapidapi BILLBOARD_RAPIDAPI_KEY=your_key_here npm run fetch:songs
-```
-
-### Option B: `billboard-top-100` package
-Optional host override (only if your RapidAPI subscription uses a different host):
-
-```bash
-BILLBOARD_PROVIDER=rapidapi BILLBOARD_RAPIDAPI_HOST=billboard-api2.p.rapidapi.com BILLBOARD_RAPIDAPI_KEY=your_key_here npm run fetch:songs
-```
-
-### Option B: `billboard-top-100` package
-### Option C: Last.fm (geo top tracks)
-
-```bash
-BILLBOARD_PROVIDER=lastfm LASTFM_API_KEY=your_key_here npm run fetch:songs
-```
-
-### Option C: Last.fm (geo top tracks)
-
-```bash
-BILLBOARD_PROVIDER=lastfm LASTFM_API_KEY=your_key_here npm run fetch:songs
-```
-
-Optional country override:
-
-```bash
-BILLBOARD_PROVIDER=lastfm LASTFM_API_KEY=your_key_here LASTFM_COUNTRY="United States" npm run fetch:songs
-```
-
-Note: Last.fm uses current geo top tracks and does not provide historical chart-by-date parity with Billboard Hot 100.
-
-When the script finishes, it writes results to `data/todaysSongs.json`. If some years fail to fetch, the script now keeps existing values for those years (or uses a `Data unavailable` placeholder) instead of aborting the entire write.
-Optional country override:
-
-```bash
-BILLBOARD_PROVIDER=lastfm LASTFM_API_KEY=your_key_here LASTFM_COUNTRY="United States" npm run fetch:songs
-```
-
-Note: Last.fm uses current geo top tracks and does not provide historical chart-by-date parity with Billboard Hot 100.
-
-### Option B: `billboard-top-100` package
-
-```bash
-npm install billboard-top-100
-BILLBOARD_PROVIDER=billboard-top-100 npm run fetch:songs
-```
-
-When the script succeeds, it writes updated results to `data/todaysSongs.json`.
+- load the list of valid weekly chart dates from `valid_dates.json`,
+- pick the nearest valid chart date for today's month/day in each year,
+- read that chart's JSON from `/date/YYYY-MM-DD.json`,
+- extract the #1 row,
+- preserve any existing year rows if a fetch fails.
 
 If your environment blocks external API access, run the script in an environment with outbound network access and then commit the updated `data/todaysSongs.json` back to this repository.
 
