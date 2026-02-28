@@ -4,12 +4,15 @@ const dns = require('dns');
 
 const START_YEAR = 1975;
 const today = new Date();
-const month = String(today.getMonth() + 1).padStart(2, '0');
-const day = String(today.getDate()).padStart(2, '0');
-const endYear = today.getFullYear();
-const MAX_DATE_OFFSET_DAYS = 6;
-const BILLBOARD_PROVIDER = process.env.BILLBOARD_PROVIDER || 'auto';
+const month = String(today.getUTCMonth() + 1).padStart(2, '0');
+const day = String(today.getUTCDate()).padStart(2, '0');
+const endYear = today.getUTCFullYear();
 const NETWORK_RETRIES = 3;
+
+const VALID_DATES_URL =
+  'https://raw.githubusercontent.com/mhollingshead/billboard-hot-100/main/valid_dates.json';
+const CHART_URL = (date) =>
+  `https://raw.githubusercontent.com/mhollingshead/billboard-hot-100/main/date/${date}.json`;
 
 dns.setDefaultResultOrder('ipv4first');
 
@@ -38,181 +41,28 @@ async function fetchWithRetry(url, options = {}) {
   throw lastError;
 }
 
-function createTop100Client() {
-  let billboard = null;
-  try {
-    billboard = require('billboard-top-100');
-  } catch (error) {
-    return null;
-  }
-
-  return {
-    name: 'billboard-top-100',
-    async getChart(chartDate) {
-      return new Promise((resolve, reject) => {
-        billboard.getChart('hot-100', chartDate, (error, chart) => {
-          if (error) {
-            reject(error);
-            return;
-          }
-          resolve(chart);
-        });
-      });
-    },
-  };
+function toISODateUTC(year, month1to12, dayOfMonth) {
+  const d = new Date(Date.UTC(year, month1to12 - 1, dayOfMonth));
+  return d.toISOString().slice(0, 10);
 }
 
-function toRapidApiTopSong(payload) {
-  const item = payload?.content?.[1] || payload?.content?.['1'] || payload?.data?.[0];
+function nearestValidDateForYear(validDates, targetISO, year) {
+  const target = new Date(`${targetISO}T00:00:00Z`).getTime();
+  const sameYearDates = validDates.filter((iso) => iso.startsWith(`${year}-`));
+  if (sameYearDates.length === 0) return null;
 
-  const title = item?.song || item?.title || item?.name;
-  const artist = item?.artist;
-  if (!title || !artist) return null;
+  sameYearDates.sort(
+    (a, b) =>
+      Math.abs(new Date(`${a}T00:00:00Z`).getTime() - target) -
+      Math.abs(new Date(`${b}T00:00:00Z`).getTime() - target),
+  );
 
-  return { title, artist };
+  return sameYearDates[0];
 }
 
-function createRapidApiClient() {
-  const key = process.env.BILLBOARD_RAPIDAPI_KEY;
-  if (!key) return null;
-
-  const host = process.env.BILLBOARD_RAPIDAPI_HOST || 'billboard-api2.p.rapidapi.com';
-
-  return {
-    name: `rapidapi:${host}`,
-    async getChart(chartDate) {
-      const url = `https://${host}/hot-100?date=${chartDate}&range=1-1`;
-      const response = await fetchWithRetry(url, {
-        headers: {
-          'x-rapidapi-key': key,
-          'x-rapidapi-host': host,
-        },
-      });
-
-      if (!response.ok) {
-        throw new Error(`RapidAPI request failed (${response.status})`);
-      }
-
-      const payload = await response.json();
-      const topSong = toRapidApiTopSong(payload);
-      if (!topSong) {
-        throw new Error('RapidAPI payload did not include a #1 song');
-      }
-
-      return {
-        date: chartDate,
-        songs: [topSong],
-      };
-    },
-  };
-}
-
-function toLastFmTopSong(payload) {
-  const track = payload?.tracks?.track?.[0];
-  const title = track?.name;
-  const artist = track?.artist?.name;
-
-  if (!title || !artist) return null;
-  return { title, artist };
-}
-
-function createLastFmClient() {
-  const key = process.env.LASTFM_API_KEY;
-  if (!key) return null;
-
-  const country = process.env.LASTFM_COUNTRY || 'United States';
-  const baseUrl = 'https://ws.audioscrobbler.com/2.0/';
-
-  return {
-    name: `lastfm:${country}`,
-    async getChart(chartDate) {
-      const params = new URLSearchParams({
-        method: 'geo.gettoptracks',
-        country,
-        limit: '1',
-        api_key: key,
-        format: 'json',
-      });
-
-      const response = await fetchWithRetry(`${baseUrl}?${params.toString()}`);
-      if (!response.ok) {
-        throw new Error(`Last.fm request failed (${response.status})`);
-      }
-
-      const payload = await response.json();
-      const topSong = toLastFmTopSong(payload);
-      if (!topSong) {
-        throw new Error('Last.fm payload did not include a top song');
-      }
-
-      return {
-        date: chartDate,
-        songs: [topSong],
-      };
-    },
-  };
-}
-
-function getChartClient() {
-  const rapidApiClient = createRapidApiClient();
-  const top100Client = createTop100Client();
-  const lastFmClient = createLastFmClient();
-
-  if (BILLBOARD_PROVIDER === 'rapidapi') {
-    if (!rapidApiClient) {
-      throw new Error('BILLBOARD_PROVIDER=rapidapi requires BILLBOARD_RAPIDAPI_KEY.');
-    }
-    return rapidApiClient;
-  }
-
-  if (BILLBOARD_PROVIDER === 'billboard-top-100') {
-    if (!top100Client) {
-      throw new Error(
-        'BILLBOARD_PROVIDER=billboard-top-100 requires optional dependency "billboard-top-100" to be installed.',
-      );
-    }
-    return top100Client;
-  }
-
-  if (BILLBOARD_PROVIDER === 'lastfm') {
-    if (!lastFmClient) {
-      throw new Error('BILLBOARD_PROVIDER=lastfm requires LASTFM_API_KEY.');
-    }
-    return lastFmClient;
-  }
-
-  return rapidApiClient || top100Client || lastFmClient;
-}
-
-function addDays(isoDate, offset) {
-  const [y, m, d] = isoDate.split('-').map(Number);
-  const dt = new Date(Date.UTC(y, m - 1, d));
-  dt.setUTCDate(dt.getUTCDate() + offset);
-  return dt.toISOString().slice(0, 10);
-}
-
-async function getChartWithFallback(getChart, baseDate) {
-  const offsets = [0];
-  for (let i = 1; i <= MAX_DATE_OFFSET_DAYS; i += 1) {
-    offsets.push(i, -i);
-  }
-
-  for (const offset of offsets) {
-    const candidate = addDays(baseDate, offset);
-    try {
-      const chart = await getChart(candidate);
-      return {
-        chart,
-        requestedDate: baseDate,
-        resolvedDate: candidate,
-        offset,
-      };
-    } catch (error) {
-      // Try next nearby date.
-    }
-  }
-
-  throw new Error(`No chart found within ±${MAX_DATE_OFFSET_DAYS} days of ${baseDate}`);
+function getNumberOne(chartPayload) {
+  const rows = Array.isArray(chartPayload?.data) ? chartPayload.data : [];
+  return rows.find((row) => Number(row?.this_week) === 1) || null;
 }
 
 async function fetchCoverArt(title, artist) {
@@ -229,7 +79,6 @@ async function fetchCoverArt(title, artist) {
     return null;
   }
 }
-
 
 function createUnavailableEntry(year) {
   return {
@@ -254,87 +103,97 @@ function loadExistingSongsByYear(filePath) {
   }
 }
 
-async function run() {
-  const chartClient = getChartClient();
-  if (!chartClient) {
-    console.error(
-      [
-        'No chart provider is available.',
-        'Use one of:',
-        '- BILLBOARD_RAPIDAPI_KEY=<key> npm run fetch:songs',
-        '- npm install billboard-top-100 && npm run fetch:songs',
-        '- BILLBOARD_PROVIDER=lastfm LASTFM_API_KEY=<key> npm run fetch:songs',
-      ].join('\n'),
-    );
-    process.exit(1);
+async function loadValidDates() {
+  const response = await fetchWithRetry(VALID_DATES_URL);
+  if (!response.ok) {
+    throw new Error(`Failed to load valid_dates.json (${response.status})`);
   }
 
-  console.log(`Using chart provider: ${chartClient.name}`);
+  const payload = await response.json();
+  if (!Array.isArray(payload)) {
+    throw new Error('valid_dates.json payload is not an array');
+  }
 
+  return payload;
+}
+
+async function loadChartByDate(chartDate) {
+  const response = await fetchWithRetry(CHART_URL(chartDate));
+  if (!response.ok) {
+    throw new Error(`Failed to load chart for ${chartDate} (${response.status})`);
+  }
+
+  return response.json();
+}
+
+async function run() {
   const filePath = path.join(__dirname, 'data', 'todaysSongs.json');
   const existingSongsByYear = loadExistingSongsByYear(filePath);
 
+  const validDates = await loadValidDates();
   const resultsByYear = new Map();
   const failures = [];
 
   for (let year = START_YEAR; year <= endYear; year += 1) {
-    const dateString = `${year}-${month}-${day}`;
+    const targetISO = toISODateUTC(year, Number(month), Number(day));
+    const chartDate = nearestValidDateForYear(validDates, targetISO, year);
+
+    if (!chartDate) {
+      failures.push({ year, error: `No valid chart date found for ${year}` });
+      continue;
+    }
 
     try {
-      const { chart, resolvedDate, offset } = await getChartWithFallback(
-        chartClient.getChart,
-        dateString,
-      );
-      const topSong = chart.songs[0];
+      const chart = await loadChartByDate(chartDate);
+      const numberOne = getNumberOne(chart);
 
-      const weeksAtNumberOne = Number(
-        topSong.weeksAtNumberOne ?? topSong.weeksAtNo1 ?? topSong.weeksAtPeak ?? 0,
-      );
+      if (!numberOne?.song || !numberOne?.artist) {
+        throw new Error(`Chart payload for ${chartDate} does not include a #1 row`);
+      }
 
-      const coverArt = await fetchCoverArt(topSong.title, topSong.artist);
+      const title = numberOne.song;
+      const artist = numberOne.artist;
+      const weeksAtNumberOne = Number(numberOne?.weeks_at_one ?? 0);
+      const coverArt = await fetchCoverArt(title, artist);
 
       resultsByYear.set(year, {
         year,
-        date: chart.date,
-        title: topSong.title,
-        artist: topSong.artist,
+        date: chartDate,
+        title,
+        artist,
         coverArt,
-        weeksAtNumberOne,
-        daysAtNumberOne: weeksAtNumberOne > 0 ? weeksAtNumberOne * 7 : null,
+        weeksAtNumberOne: Number.isFinite(weeksAtNumberOne) ? weeksAtNumberOne : null,
+        daysAtNumberOne: Number.isFinite(weeksAtNumberOne) ? weeksAtNumberOne * 7 : null,
         fact: `#1 on Billboard Hot 100 on this day in ${year}.`,
-        spotify: `https://open.spotify.com/search/${encodeURIComponent(`${topSong.title} ${topSong.artist}`)}`,
-        youtube: `https://www.youtube.com/results?search_query=${encodeURIComponent(`${topSong.title} ${topSong.artist}`)}`,
+        spotify: `https://open.spotify.com/search/${encodeURIComponent(`${title} ${artist}`)}`,
+        youtube: `https://www.youtube.com/results?search_query=${encodeURIComponent(`${title} ${artist}`)}`,
       });
 
-      if (offset === 0) {
-        console.log(`Fetched ${year}: ${topSong.title} — ${topSong.artist}`);
-      } else {
-        console.log(
-          `Fetched ${year}: ${topSong.title} — ${topSong.artist} (resolved ${resolvedDate}, offset ${offset > 0 ? '+' : ''}${offset}d)`,
-        );
-      }
+      console.log(`Fetched ${year}: ${title} — ${artist} (${chartDate})`);
     } catch (error) {
-      failures.push({ year, dateString, error: error.message || String(error) });
-      console.error(`Failed to fetch chart for ${dateString}:`, error.message || error);
+      failures.push({ year, error: error.message || String(error) });
+      console.error(`Failed to fetch chart for ${year} (${chartDate}):`, error.message || error);
     }
   }
 
   if (failures.length > 0) {
-    console.warn(`Chart fetch failed for ${failures.length} years. Keeping existing entries or placeholders for those years.`);
-    failures.forEach((failure) => {
-      console.warn(`- ${failure.year} (${failure.dateString}): ${failure.error}`);
+    console.warn(
+      `Chart fetch failed for ${failures.length} years. Keeping existing entries or placeholders for those years.`,
+    );
 
+    failures.forEach((failure) => {
+      console.warn(`- ${failure.year}: ${failure.error}`);
       if (!resultsByYear.has(failure.year)) {
-        const fallbackEntry = existingSongsByYear.get(failure.year) || createUnavailableEntry(failure.year);
-        resultsByYear.set(failure.year, fallbackEntry);
+        const fallback = existingSongsByYear.get(failure.year) || createUnavailableEntry(failure.year);
+        resultsByYear.set(failure.year, fallback);
       }
     });
   }
 
   for (let year = START_YEAR; year <= endYear; year += 1) {
     if (!resultsByYear.has(year)) {
-      const fallbackEntry = existingSongsByYear.get(year) || createUnavailableEntry(year);
-      resultsByYear.set(year, fallbackEntry);
+      const fallback = existingSongsByYear.get(year) || createUnavailableEntry(year);
+      resultsByYear.set(year, fallback);
     }
   }
 
@@ -342,9 +201,14 @@ async function run() {
 
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
   fs.writeFileSync(filePath, JSON.stringify(results, null, 2), 'utf8');
-  const resolvedCount = results.filter((song) => song.title !== 'Data unavailable').length;
-  console.log(`Saved ${results.length} entries to ${filePath} (${resolvedCount} resolved, ${results.length - resolvedCount} unavailable)`);
 
+  const resolvedCount = results.filter((song) => song.title !== 'Data unavailable').length;
+  console.log(
+    `Saved ${results.length} entries to ${filePath} (${resolvedCount} resolved, ${results.length - resolvedCount} unavailable)`,
+  );
 }
 
-run();
+run().catch((error) => {
+  console.error('Fetch failed:', error.message || error);
+  process.exit(1);
+});
