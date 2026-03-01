@@ -27,6 +27,7 @@ export default function Home({ songs }) {
           const title = result?.song;
           const artist = result?.artist;
           const year = Number(result?.year);
+          const existingSong = byYear.get(year);
 
           if (!title || !artist || !Number.isFinite(year)) return;
 
@@ -35,9 +36,9 @@ export default function Home({ songs }) {
             date: result?.chartDate || null,
             title,
             artist,
-            coverArt: null,
-            weeksAtNumberOne: null,
-            daysAtNumberOne: null,
+            coverArt: result?.coverArt || existingSong?.coverArt || null,
+            weeksAtNumberOne: existingSong?.weeksAtNumberOne ?? null,
+            daysAtNumberOne: existingSong?.daysAtNumberOne ?? null,
             fact: `#1 on Billboard Hot 100 on this day in ${year}.`,
             spotify: `https://open.spotify.com/search/${encodeURIComponent(`${title} ${artist}`)}`,
             youtube: `https://www.youtube.com/results?search_query=${encodeURIComponent(`${title} ${artist}`)}`,
