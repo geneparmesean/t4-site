@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Sora:wght@600;700;800&display=swap');
 
 .container {
+  --sticky-header-offset: 7.25rem;
   min-height: 100vh;
   padding: 2rem;
   background:
@@ -16,7 +17,27 @@
 .header {
   max-width: 960px;
   margin: 0 auto 1.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  padding: 0.75rem 0 0.55rem;
   text-align: center;
+  isolation: isolate;
+}
+
+.header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 100vw;
+  transform: translateX(-50%);
+  z-index: -1;
+  background:
+    radial-gradient(circle at 12% 10%, rgba(222, 167, 255, 0.32) 0%, rgba(222, 167, 255, 0) 36%),
+    radial-gradient(circle at 88% 4%, rgba(175, 136, 255, 0.34) 0%, rgba(175, 136, 255, 0) 42%),
+    linear-gradient(155deg, #120723 0%, #2a0d4a 38%, #43106a 72%, #5f1687 100%);
 }
 
 .logo {
@@ -63,7 +84,7 @@
 
 .affiliateColumn {
   position: sticky;
-  top: 1rem;
+  top: calc(var(--sticky-header-offset) + 1rem);
 }
 
 .affiliateCard {
@@ -200,4 +221,5 @@
   .affiliateColumn {
     position: static;
   }
+
 }
