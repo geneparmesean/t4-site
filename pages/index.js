@@ -114,8 +114,6 @@ export default function Home({ songs }) {
                   {song.title}
                   <span className={styles.artist}> — {song.artist}</span>
                 </h2>
-                <p className={styles.fact}>{song.fact}</p>
-
                 <div className={styles.links}>
                   {song.spotify && (
                     <a href={song.spotify} target="_blank" rel="noreferrer">
