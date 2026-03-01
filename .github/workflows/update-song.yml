@@ -12,15 +12,12 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v3
         with:
-          persist-credentials: false  # 💥 prevents git push conflicts
+          persist-credentials: false
 
       - name: Set Up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
-
-      - name: Install billboard-top-100
-        run: npm install billboard-top-100
+          node-version: '20'
 
       - name: Run fetchBillboardSongs
         run: node fetchBillboardSongs.js
@@ -36,4 +33,3 @@ jobs:
           git commit -m "🎶 Daily update: Billboard song of the day" || echo "No changes to commit"
           git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}
           git push --force origin HEAD:main
-
