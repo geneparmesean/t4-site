@@ -4,7 +4,7 @@ const CHART_URL = (date) =>
   `https://raw.githubusercontent.com/mhollingshead/billboard-hot-100/main/date/${date}.json`;
 const ITUNES_URL = (title, artist) => {
   const query = encodeURIComponent(`${title} ${artist}`);
-  return `https://itunes.apple.com/search?term=${query}&media=music&entity=song&limit=1`;
+  return `https://itunes.apple.com/search?term=${query}&media=music&entity=song&limit=10`;
 };
 
 let cachedValidDates = null;
@@ -46,7 +46,13 @@ async function fetchCoverArt(title, artist) {
 
   try {
     const payload = await fetchJson(ITUNES_URL(title, artist));
-    const artwork = payload?.results?.[0]?.artworkUrl100;
+    const normalizedArtist = artist.trim().toLowerCase();
+    const results = Array.isArray(payload?.results) ? payload.results : [];
+    const bestMatch =
+      results.find((result) => result?.artistName?.trim().toLowerCase() === normalizedArtist) ||
+      results.find((result) => result?.artistName?.toLowerCase().includes(normalizedArtist)) ||
+      results[0];
+    const artwork = bestMatch?.artworkUrl100;
     const highRes = artwork ? artwork.replace('100x100bb', '600x600bb') : null;
     coverArtCache.set(cacheKey, highRes);
     return highRes;
