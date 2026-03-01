@@ -14,28 +14,34 @@ export default function Home({ songs }) {
       {
         name: 'Rolling Stone Magazine',
         href: 'https://www.rollingstone.com/product/rolling-stone-print-subscription/?utm_source=toptracktimemachine&utm_medium=affiliate',
+        logo: 'https://www.google.com/s2/favicons?sz=128&domain=rollingstone.com',
       },
       {
         name: 'MOJO Magazine',
         href: 'https://www.greatmagazines.co.uk/mojo-magazine-subscription?utm_source=toptracktimemachine&utm_medium=affiliate',
+        logo: 'https://www.google.com/s2/favicons?sz=128&domain=greatmagazines.co.uk',
       },
       {
         name: 'Uncut Magazine',
         href: 'https://www.magazinesdirect.com/uncut-magazine-single-issue?utm_source=toptracktimemachine&utm_medium=affiliate',
+        logo: 'https://www.google.com/s2/favicons?sz=128&domain=magazinesdirect.com',
       },
     ],
     retailers: [
       {
         name: 'Amazon Music & Vinyl Deals',
         href: 'https://www.amazon.com/music/player?tag=toptracktimemachine-20',
+        logo: 'https://www.google.com/s2/favicons?sz=128&domain=amazon.com',
       },
       {
         name: 'Target Vinyl & CDs',
         href: 'https://www.target.com/c/music/-/N-55r1i?afid=toptracktimemachine',
+        logo: 'https://www.google.com/s2/favicons?sz=128&domain=target.com',
       },
       {
         name: 'Walmart Music',
         href: 'https://www.walmart.com/browse/music/4104?athcpid=toptracktimemachine',
+        logo: 'https://www.google.com/s2/favicons?sz=128&domain=walmart.com',
       },
     ],
   };
@@ -132,7 +138,8 @@ export default function Home({ songs }) {
               {affiliateGroups.magazines.map((link) => (
                 <li key={link.href}>
                   <a href={link.href} target="_blank" rel="noreferrer sponsored">
-                    {link.name}
+                    <img src={link.logo} alt={`${link.name} logo`} loading="lazy" />
+                    <span>{link.name}</span>
                   </a>
                 </li>
               ))}
@@ -185,7 +192,8 @@ export default function Home({ songs }) {
               {affiliateGroups.retailers.map((link) => (
                 <li key={link.href}>
                   <a href={link.href} target="_blank" rel="noreferrer sponsored">
-                    {link.name}
+                    <img src={link.logo} alt={`${link.name} logo`} loading="lazy" />
+                    <span>{link.name}</span>
                   </a>
                 </li>
               ))}
