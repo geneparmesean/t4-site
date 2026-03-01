@@ -9,6 +9,43 @@ function getYear(song = {}) {
 }
 
 export default function Home({ songs }) {
+  const affiliateGroups = {
+    magazines: [
+      {
+        name: 'Rolling Stone Magazine',
+        href: 'https://www.rollingstone.com/product/rolling-stone-print-subscription/?utm_source=toptracktimemachine&utm_medium=affiliate',
+        logo: 'https://www.google.com/s2/favicons?sz=128&domain=rollingstone.com',
+      },
+      {
+        name: 'MOJO Magazine',
+        href: 'https://www.greatmagazines.co.uk/mojo-magazine-subscription?utm_source=toptracktimemachine&utm_medium=affiliate',
+        logo: 'https://www.google.com/s2/favicons?sz=128&domain=greatmagazines.co.uk',
+      },
+      {
+        name: 'Uncut Magazine',
+        href: 'https://www.magazinesdirect.com/uncut-magazine-single-issue?utm_source=toptracktimemachine&utm_medium=affiliate',
+        logo: 'https://www.google.com/s2/favicons?sz=128&domain=magazinesdirect.com',
+      },
+    ],
+    retailers: [
+      {
+        name: 'Amazon Music & Vinyl Deals',
+        href: 'https://www.amazon.com/music/player?tag=toptracktimemachine-20',
+        logo: 'https://www.google.com/s2/favicons?sz=128&domain=amazon.com',
+      },
+      {
+        name: 'Target Vinyl & CDs',
+        href: 'https://www.target.com/c/music/-/N-55r1i?afid=toptracktimemachine',
+        logo: 'https://www.google.com/s2/favicons?sz=128&domain=target.com',
+      },
+      {
+        name: 'Walmart Music',
+        href: 'https://www.walmart.com/browse/music/4104?athcpid=toptracktimemachine',
+        logo: 'https://www.google.com/s2/favicons?sz=128&domain=walmart.com',
+      },
+    ],
+  };
+
   const [liveSongs, setLiveSongs] = useState(null);
 
   useEffect(() => {
@@ -94,6 +131,22 @@ export default function Home({ songs }) {
       </header>
 
       <main className={styles.main}>
+        <aside className={styles.affiliateColumn}>
+          <section className={styles.affiliateCard}>
+            <h2>Music Magazine Picks</h2>
+            <ul>
+              {affiliateGroups.magazines.map((link) => (
+                <li key={link.href}>
+                  <a href={link.href} target="_blank" rel="noreferrer sponsored">
+                    <img src={link.logo} alt={`${link.name} logo`} loading="lazy" />
+                    <span>{link.name}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        </aside>
+
         <div className={styles.grid}>
           {sortedSongs.map((song, index) => {
             const year = getYear(song);
@@ -131,6 +184,22 @@ export default function Home({ songs }) {
             );
           })}
         </div>
+
+        <aside className={styles.affiliateColumn}>
+          <section className={styles.affiliateCard}>
+            <h2>Music Retailer Deals</h2>
+            <ul>
+              {affiliateGroups.retailers.map((link) => (
+                <li key={link.href}>
+                  <a href={link.href} target="_blank" rel="noreferrer sponsored">
+                    <img src={link.logo} alt={`${link.name} logo`} loading="lazy" />
+                    <span>{link.name}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        </aside>
       </main>
     </div>
   );
