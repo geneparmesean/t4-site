@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Sora:wght@600;700;800&display=swap');
 
 .container {
+  --sticky-header-offset: 7.25rem;
   min-height: 100vh;
   padding: 2rem;
   background:
@@ -16,6 +17,10 @@
 .header {
   max-width: 960px;
   margin: 0 auto 1.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  padding-bottom: 0.35rem;
   text-align: center;
 }
 
@@ -63,7 +68,7 @@
 
 .affiliateColumn {
   position: sticky;
-  top: 1rem;
+  top: calc(var(--sticky-header-offset) + 1rem);
 }
 
 .affiliateCard {
@@ -200,4 +205,5 @@
   .affiliateColumn {
     position: static;
   }
+
 }

@@ -26,6 +26,21 @@ export default function Home({ songs }) {
         href: 'https://www.magazinesdirect.com/uncut-magazine-single-issue?utm_source=toptracktimemachine&utm_medium=affiliate',
         logo: 'https://www.google.com/s2/favicons?sz=128&domain=magazinesdirect.com',
       },
+      {
+        name: 'NME Magazine',
+        href: 'https://www.nme.com/?utm_source=toptracktimemachine&utm_medium=affiliate',
+        logo: 'https://www.google.com/s2/favicons?sz=128&domain=nme.com',
+      },
+      {
+        name: 'Paste Magazine',
+        href: 'https://www.pastemagazine.com/music?utm_source=toptracktimemachine&utm_medium=affiliate',
+        logo: 'https://www.google.com/s2/favicons?sz=128&domain=pastemagazine.com',
+      },
+      {
+        name: 'Spin Magazine',
+        href: 'https://www.spin.com/?utm_source=toptracktimemachine&utm_medium=affiliate',
+        logo: 'https://www.google.com/s2/favicons?sz=128&domain=spin.com',
+      },
     ],
     retailers: [
       {
@@ -42,6 +57,21 @@ export default function Home({ songs }) {
         name: 'Walmart Music',
         href: 'https://www.walmart.com/browse/music/4104?athcpid=toptracktimemachine',
         logo: 'https://www.google.com/s2/favicons?sz=128&domain=walmart.com',
+      },
+      {
+        name: 'Best Buy Music',
+        href: 'https://www.bestbuy.com/site/electronics/music-movies-books/pcmcat309300050007.c?id=pcmcat309300050007&utm_source=toptracktimemachine&utm_medium=affiliate',
+        logo: 'https://www.google.com/s2/favicons?sz=128&domain=bestbuy.com',
+      },
+      {
+        name: 'Barnes & Noble Music',
+        href: 'https://www.barnesandnoble.com/b/music/_/N-1fZ29Z8q8?utm_source=toptracktimemachine&utm_medium=affiliate',
+        logo: 'https://www.google.com/s2/favicons?sz=128&domain=barnesandnoble.com',
+      },
+      {
+        name: 'Rough Trade Records',
+        href: 'https://www.roughtrade.com/us?utm_source=toptracktimemachine&utm_medium=affiliate',
+        logo: 'https://www.google.com/s2/favicons?sz=128&domain=roughtrade.com',
       },
     ],
   };
