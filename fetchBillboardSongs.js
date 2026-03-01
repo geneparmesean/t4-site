@@ -67,13 +67,19 @@ function getNumberOne(chartPayload) {
 
 async function fetchCoverArt(title, artist) {
   const query = encodeURIComponent(`${title} ${artist}`);
-  const url = `https://itunes.apple.com/search?term=${query}&media=music&entity=song&limit=1`;
+  const url = `https://itunes.apple.com/search?term=${query}&media=music&entity=song&limit=10`;
 
   try {
     const response = await fetchWithRetry(url);
     if (!response.ok) return null;
     const payload = await response.json();
-    const artwork = payload?.results?.[0]?.artworkUrl100;
+    const normalizedArtist = artist.trim().toLowerCase();
+    const results = Array.isArray(payload?.results) ? payload.results : [];
+    const bestMatch =
+      results.find((result) => result?.artistName?.trim().toLowerCase() === normalizedArtist) ||
+      results.find((result) => result?.artistName?.toLowerCase().includes(normalizedArtist)) ||
+      results[0];
+    const artwork = bestMatch?.artworkUrl100;
     return artwork ? artwork.replace('100x100bb', '600x600bb') : null;
   } catch (error) {
     return null;
