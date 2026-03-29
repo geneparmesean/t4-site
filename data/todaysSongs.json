@@ -37,7 +37,7 @@
   },
   {
     "year": 1978,
-    "date": "1978-03-25",
+    "date": "1978-04-01",
     "title": "Night Fever",
     "artist": "Bee Gees",
     "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/74/c1/73/74c17380-b75d-4d74-31d8-99f8e8b20c36/17UM1IM27905.rgb.jpg/600x600bb.jpg",
@@ -169,15 +169,15 @@
   },
   {
     "year": 1989,
-    "date": "1989-03-25",
-    "title": "The Living Years",
-    "artist": "Mike + The Mechanics",
-    "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/44/33/14/4433144a-7215-d89d-377a-871bd45b074f/081227921163.jpg/600x600bb.jpg",
+    "date": "1989-04-01",
+    "title": "Eternal Flame",
+    "artist": "The Bangles",
+    "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/ac/f9/67/acf96755-6548-014b-cedf-250091a8bed4/886445093063.jpg/600x600bb.jpg",
     "weeksAtNumberOne": 0,
     "daysAtNumberOne": 0,
     "fact": "#1 on Billboard Hot 100 on this day in 1989.",
-    "spotify": "https://open.spotify.com/search/The%20Living%20Years%20Mike%20%2B%20The%20Mechanics",
-    "youtube": "https://www.youtube.com/results?search_query=The%20Living%20Years%20Mike%20%2B%20The%20Mechanics"
+    "spotify": "https://open.spotify.com/search/Eternal%20Flame%20The%20Bangles",
+    "youtube": "https://www.youtube.com/results?search_query=Eternal%20Flame%20The%20Bangles"
   },
   {
     "year": 1990,
@@ -241,7 +241,7 @@
   },
   {
     "year": 1995,
-    "date": "1995-03-25",
+    "date": "1995-04-01",
     "title": "Take A Bow",
     "artist": "Madonna",
     "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/2e/ea/4d/2eea4d57-8c5b-8961-1541-40c3adf571b8/dj.ckcxloql.jpg/600x600bb.jpg",
@@ -256,7 +256,7 @@
     "date": "1996-03-30",
     "title": "Because You Loved Me (From \"Up Close & Personal\")",
     "artist": "Celine Dion",
-    "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/f8/22/71/f82271b5-febd-23c2-8028-040760dda6f8/mzi.actfimaz.jpg/600x600bb.jpg",
+    "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/fd/2c/fa/fd2cfa89-c6c4-e564-8e6e-7f03a5377744/886447854761.jpg/600x600bb.jpg",
     "weeksAtNumberOne": 0,
     "daysAtNumberOne": 0,
     "fact": "#1 on Billboard Hot 100 on this day in 1996.",
@@ -301,7 +301,7 @@
   },
   {
     "year": 2000,
-    "date": "2000-03-25",
+    "date": "2000-04-01",
     "title": "Say My Name",
     "artist": "Destiny's Child",
     "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/c9/29/74/c92974ce-2bdd-4b86-a261-01adc901bb65/mzi.cmambura.jpg/600x600bb.jpg",
@@ -373,15 +373,15 @@
   },
   {
     "year": 2006,
-    "date": "2006-03-25",
-    "title": "So Sick",
-    "artist": "Ne-Yo",
-    "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/f1/37/c5/f137c5cc-c6c0-cdf3-909f-6800c3e4e31c/06UMGIM17731.rgb.jpg/600x600bb.jpg",
+    "date": "2006-04-01",
+    "title": "Temperature",
+    "artist": "Sean Paul",
+    "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/01/a4/63/01a463c1-a951-eda2-291b-e601b6303c5a/mzi.eemlybcl.jpg/600x600bb.jpg",
     "weeksAtNumberOne": 0,
     "daysAtNumberOne": 0,
     "fact": "#1 on Billboard Hot 100 on this day in 2006.",
-    "spotify": "https://open.spotify.com/search/So%20Sick%20Ne-Yo",
-    "youtube": "https://www.youtube.com/results?search_query=So%20Sick%20Ne-Yo"
+    "spotify": "https://open.spotify.com/search/Temperature%20Sean%20Paul",
+    "youtube": "https://www.youtube.com/results?search_query=Temperature%20Sean%20Paul"
   },
   {
     "year": 2007,
@@ -505,7 +505,7 @@
   },
   {
     "year": 2017,
-    "date": "2017-03-25",
+    "date": "2017-04-01",
     "title": "Shape Of You",
     "artist": "Ed Sheeran",
     "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/600x600bb.jpg",
@@ -556,7 +556,7 @@
     "date": "2021-03-27",
     "title": "Up",
     "artist": "Cardi B",
-    "coverArt": null,
+    "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/cf/66/73/cf6673b8-b936-dc2e-4f9c-75595eb545b2/075679791344.jpg/600x600bb.jpg",
     "weeksAtNumberOne": 0,
     "daysAtNumberOne": 0,
     "fact": "#1 on Billboard Hot 100 on this day in 2021.",
@@ -577,10 +577,10 @@
   },
   {
     "year": 2023,
-    "date": "2023-03-25",
+    "date": "2023-04-01",
     "title": "Flowers",
     "artist": "Miley Cyrus",
-    "coverArt": null,
+    "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/8c/67/ff/8c67ff91-31c3-3fef-1884-ce3ec89f3af4/196589946874.jpg/600x600bb.jpg",
     "weeksAtNumberOne": 0,
     "daysAtNumberOne": 0,
     "fact": "#1 on Billboard Hot 100 on this day in 2023.",
