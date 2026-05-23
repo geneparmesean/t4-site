@@ -49,7 +49,7 @@
   },
   {
     "year": 1979,
-    "date": "1979-05-19",
+    "date": "1979-05-26",
     "title": "Reunited",
     "artist": "Peaches & Herb",
     "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/fd/1d/93/fd1d938a-095f-31b3-dfa7-7c62ab847f95/06UMGIM72115.rgb.jpg/600x600bb.jpg",
@@ -109,15 +109,15 @@
   },
   {
     "year": 1984,
-    "date": "1984-05-19",
-    "title": "Hello",
-    "artist": "Lionel Richie",
-    "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/0d/c0/a3/0dc0a301-d9e5-2980-5141-d8ddb1571398/00602498607497.rgb.jpg/600x600bb.jpg",
+    "date": "1984-05-26",
+    "title": "Let's Hear It For The Boy",
+    "artist": "Deniece Williams",
+    "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/e6/2d/47/e62d479d-baf4-c10a-b45f-7888d1905c0a/886445296112.jpg/600x600bb.jpg",
     "weeksAtNumberOne": 0,
     "daysAtNumberOne": 0,
     "fact": "#1 on Billboard Hot 100 on this day in 1984.",
-    "spotify": "https://open.spotify.com/search/Hello%20Lionel%20Richie",
-    "youtube": "https://www.youtube.com/results?search_query=Hello%20Lionel%20Richie"
+    "spotify": "https://open.spotify.com/search/Let's%20Hear%20It%20For%20The%20Boy%20Deniece%20Williams",
+    "youtube": "https://www.youtube.com/results?search_query=Let's%20Hear%20It%20For%20The%20Boy%20Deniece%20Williams"
   },
   {
     "year": 1985,
@@ -181,7 +181,7 @@
   },
   {
     "year": 1990,
-    "date": "1990-05-19",
+    "date": "1990-05-26",
     "title": "Vogue",
     "artist": "Madonna",
     "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Features114/v4/32/fd/6e/32fd6e25-da2b-10e9-df38-2923c01b6c9b/dj.jaxugjvp.jpg/600x600bb.jpg",
@@ -313,7 +313,7 @@
   },
   {
     "year": 2001,
-    "date": "2001-05-19",
+    "date": "2001-05-26",
     "title": "All For You",
     "artist": "Janet",
     "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/04/ab/25/04ab2585-dd7b-dfed-3afe-86800393a7c2/13ULAIM48853.rgb.jpg/600x600bb.jpg",
@@ -385,15 +385,15 @@
   },
   {
     "year": 2007,
-    "date": "2007-05-19",
-    "title": "Makes Me Wonder",
-    "artist": "Maroon 5",
-    "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/a4/ce/4c/a4ce4c3b-097d-ce1e-24fe-c8bd8cd0dd98/00602517948617.rgb.jpg/600x600bb.jpg",
+    "date": "2007-05-26",
+    "title": "Buy U A Drank (Shawty Snappin')",
+    "artist": "T-Pain Featuring Yung Joc",
+    "coverArt": null,
     "weeksAtNumberOne": 0,
     "daysAtNumberOne": 0,
     "fact": "#1 on Billboard Hot 100 on this day in 2007.",
-    "spotify": "https://open.spotify.com/search/Makes%20Me%20Wonder%20Maroon%205",
-    "youtube": "https://www.youtube.com/results?search_query=Makes%20Me%20Wonder%20Maroon%205"
+    "spotify": "https://open.spotify.com/search/Buy%20U%20A%20Drank%20(Shawty%20Snappin')%20T-Pain%20Featuring%20Yung%20Joc",
+    "youtube": "https://www.youtube.com/results?search_query=Buy%20U%20A%20Drank%20(Shawty%20Snappin')%20T-Pain%20Featuring%20Yung%20Joc"
   },
   {
     "year": 2008,
@@ -445,7 +445,7 @@
   },
   {
     "year": 2012,
-    "date": "2012-05-19",
+    "date": "2012-05-26",
     "title": "Somebody That I Used To Know",
     "artist": "Gotye Featuring Kimbra",
     "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/5d/4b/b0/5d4bb010-fbb5-3d6d-b355-d8074392e958/12UMGIM32418.rgb.jpg/600x600bb.jpg",
@@ -517,7 +517,7 @@
   },
   {
     "year": 2018,
-    "date": "2018-05-19",
+    "date": "2018-05-26",
     "title": "This Is America",
     "artist": "Childish Gambino",
     "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/f7/a4/ee/f7a4ee19-086e-7aba-ea4d-c36be6ea69d4/886447095850.jpg/600x600bb.jpg",
@@ -556,7 +556,7 @@
     "date": "2021-05-22",
     "title": "Leave The Door Open",
     "artist": "Silk Sonic (Bruno Mars & Anderson .Paak)",
-    "coverArt": null,
+    "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/4e/b2/25/4eb22575-99e3-8c06-7446-51a99add8b0f/075679754585.jpg/600x600bb.jpg",
     "weeksAtNumberOne": 0,
     "daysAtNumberOne": 0,
     "fact": "#1 on Billboard Hot 100 on this day in 2021.",
@@ -592,7 +592,7 @@
     "date": "2024-05-25",
     "title": "I Had Some Help",
     "artist": "Post Malone Featuring Morgan Wallen",
-    "coverArt": null,
+    "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/84/df/b9/84dfb96b-27c8-4d40-4780-b65ff22790e4/24UMGIM50612.rgb.jpg/600x600bb.jpg",
     "weeksAtNumberOne": 0,
     "daysAtNumberOne": 0,
     "fact": "#1 on Billboard Hot 100 on this day in 2024.",
@@ -616,7 +616,7 @@
     "date": "2026-05-23",
     "title": "Choosin' Texas",
     "artist": "Ella Langley",
-    "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/e2/91/4d/e2914d0a-7f1d-f04c-fbf4-c50b38548838/196873638690.jpg/600x600bb.jpg",
+    "coverArt": null,
     "weeksAtNumberOne": 0,
     "daysAtNumberOne": 0,
     "fact": "#1 on Billboard Hot 100 on this day in 2026.",
