@@ -37,7 +37,7 @@
   },
   {
     "year": 1978,
-    "date": "1978-07-22",
+    "date": "1978-07-29",
     "title": "Shadow Dancing",
     "artist": "Andy Gibb",
     "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/1e/67/e8/1e67e83d-674f-97bb-1059-8c2658e1694b/00602557881998.rgb.jpg/600x600bb.jpg",
@@ -169,7 +169,7 @@
   },
   {
     "year": 1989,
-    "date": "1989-07-22",
+    "date": "1989-07-29",
     "title": "Toy Soldiers",
     "artist": "Martika",
     "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/31/6a/14/316a144f-96e3-8e65-d015-701dddb887e1/dj.gednyywd.jpg/600x600bb.jpg",
@@ -241,7 +241,7 @@
   },
   {
     "year": 1995,
-    "date": "1995-07-22",
+    "date": "1995-07-29",
     "title": "Waterfalls",
     "artist": "TLC",
     "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/14/a8/69/14a86912-841d-3cb8-cf55-0439b15c6cab/dj.mjduepez.jpg/600x600bb.jpg",
@@ -301,15 +301,15 @@
   },
   {
     "year": 2000,
-    "date": "2000-07-22",
-    "title": "Bent",
-    "artist": "matchbox twenty",
-    "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/bf/b0/d6/bfb0d64f-5e51-7394-e5e2-ee204675cc11/075679958488.jpg/600x600bb.jpg",
+    "date": "2000-07-29",
+    "title": "It's Gonna Be Me",
+    "artist": "'N Sync",
+    "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/95/e8/65/95e86597-6095-0f6c-f6b8-ba53c7b744a2/828767330723.jpg/600x600bb.jpg",
     "weeksAtNumberOne": 0,
     "daysAtNumberOne": 0,
     "fact": "#1 on Billboard Hot 100 on this day in 2000.",
-    "spotify": "https://open.spotify.com/search/Bent%20matchbox%20twenty",
-    "youtube": "https://www.youtube.com/results?search_query=Bent%20matchbox%20twenty"
+    "spotify": "https://open.spotify.com/search/It's%20Gonna%20Be%20Me%20'N%20Sync",
+    "youtube": "https://www.youtube.com/results?search_query=It's%20Gonna%20Be%20Me%20'N%20Sync"
   },
   {
     "year": 2001,
@@ -373,7 +373,7 @@
   },
   {
     "year": 2006,
-    "date": "2006-07-22",
+    "date": "2006-07-29",
     "title": "Promiscuous",
     "artist": "Nelly Furtado Featuring Timbaland",
     "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/20/f2/be/20f2be1f-716d-a2df-913e-1aff99c08619/06UMGIM31170.rgb.jpg/600x600bb.jpg",
@@ -436,7 +436,7 @@
     "date": "2011-07-23",
     "title": "Party Rock Anthem",
     "artist": "LMFAO Featuring Lauren Bennett & GoonRock",
-    "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/51/6d/33/516d3344-49e8-947d-90e6-bc21a4e6fc62/11UMGIM14030.rgb.jpg/600x600bb.jpg",
+    "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/3a/a8/40/3aa8403d-abb0-0f1b-5324-5b50073840c8/11UMGIM14031.rgb.jpg/600x600bb.jpg",
     "weeksAtNumberOne": 0,
     "daysAtNumberOne": 0,
     "fact": "#1 on Billboard Hot 100 on this day in 2011.",
@@ -505,10 +505,10 @@
   },
   {
     "year": 2017,
-    "date": "2017-07-22",
+    "date": "2017-07-29",
     "title": "Despacito",
     "artist": "Luis Fonsi & Daddy Yankee Featuring Justin Bieber",
-    "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/db/d6/1d/dbd61df5-8431-a665-d881-cb72cfab14e5/17UM1IM03492.rgb.jpg/600x600bb.jpg",
+    "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/e2/ef/f0/e2eff0bc-c51d-7de5-9280-6891ddcee71b/18UMGIM85289.rgb.jpg/600x600bb.jpg",
     "weeksAtNumberOne": 0,
     "daysAtNumberOne": 0,
     "fact": "#1 on Billboard Hot 100 on this day in 2017.",
@@ -544,7 +544,7 @@
     "date": "2020-07-25",
     "title": "Rockstar",
     "artist": "DaBaby Featuring Roddy Ricch",
-    "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/1b/63/04/1b630400-490e-245b-a26f-0120f6f253c8/20UMGIM28168.rgb.jpg/600x600bb.jpg",
+    "coverArt": null,
     "weeksAtNumberOne": 0,
     "daysAtNumberOne": 0,
     "fact": "#1 on Billboard Hot 100 on this day in 2020.",
@@ -577,15 +577,15 @@
   },
   {
     "year": 2023,
-    "date": "2023-07-22",
-    "title": "Last Night",
-    "artist": "Morgan Wallen",
-    "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/db/9f/8e/db9f8e0c-d947-b7fd-cc93-a832c81ce4ee/00602455241252_Cover.jpg/600x600bb.jpg",
+    "date": "2023-07-29",
+    "title": "Seven",
+    "artist": "Jung Kook Featuring Latto",
+    "coverArt": null,
     "weeksAtNumberOne": 0,
     "daysAtNumberOne": 0,
     "fact": "#1 on Billboard Hot 100 on this day in 2023.",
-    "spotify": "https://open.spotify.com/search/Last%20Night%20Morgan%20Wallen",
-    "youtube": "https://www.youtube.com/results?search_query=Last%20Night%20Morgan%20Wallen"
+    "spotify": "https://open.spotify.com/search/Seven%20Jung%20Kook%20Featuring%20Latto",
+    "youtube": "https://www.youtube.com/results?search_query=Seven%20Jung%20Kook%20Featuring%20Latto"
   },
   {
     "year": 2024,
