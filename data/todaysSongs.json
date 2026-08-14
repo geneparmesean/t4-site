@@ -121,7 +121,7 @@
   },
   {
     "year": 1985,
-    "date": "1985-08-10",
+    "date": "1985-08-17",
     "title": "Shout",
     "artist": "Tears For Fears",
     "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/74/41/43/744143ae-afad-8380-106e-1c1bc48922e4/14UMGIM34762.rgb.jpg/600x600bb.jpg",
@@ -193,7 +193,7 @@
   },
   {
     "year": 1991,
-    "date": "1991-08-10",
+    "date": "1991-08-17",
     "title": "(Everything I Do) I Do It For You",
     "artist": "Bryan Adams",
     "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/b0/f7/5d/b0f75dab-7e01-d4c6-61c3-e6253a2cae22/06UMGIM18645.rgb.jpg/600x600bb.jpg",
@@ -253,7 +253,7 @@
   },
   {
     "year": 1996,
-    "date": "1996-08-10",
+    "date": "1996-08-17",
     "title": "Macarena (Bayside Boys Mix)",
     "artist": "Los Del Rio",
     "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/a1/2d/6a/a12d6a7b-6173-ed2e-9682-a30d245ed7fe/mzi.ndplymif.jpg/600x600bb.jpg",
@@ -325,15 +325,15 @@
   },
   {
     "year": 2002,
-    "date": "2002-08-10",
-    "title": "Hot In Herre",
-    "artist": "Nelly",
+    "date": "2002-08-17",
+    "title": "Dilemma",
+    "artist": "Nelly Featuring Kelly Rowland",
     "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/37/35/62/373562e8-ab69-254b-bbf2-f1cb9aca66fe/06UMGIM16889.rgb.jpg/600x600bb.jpg",
     "weeksAtNumberOne": 0,
     "daysAtNumberOne": 0,
     "fact": "#1 on Billboard Hot 100 on this day in 2002.",
-    "spotify": "https://open.spotify.com/search/Hot%20In%20Herre%20Nelly",
-    "youtube": "https://www.youtube.com/results?search_query=Hot%20In%20Herre%20Nelly"
+    "spotify": "https://open.spotify.com/search/Dilemma%20Nelly%20Featuring%20Kelly%20Rowland",
+    "youtube": "https://www.youtube.com/results?search_query=Dilemma%20Nelly%20Featuring%20Kelly%20Rowland"
   },
   {
     "year": 2003,
@@ -400,7 +400,7 @@
     "date": "2008-08-16",
     "title": "I Kissed A Girl",
     "artist": "Katy Perry",
-    "coverArt": null,
+    "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/57/dc/18/57dc1854-4483-52b2-fe7c-8a221edf9e88/13UABIM48773.rgb.jpg/600x600bb.jpg",
     "weeksAtNumberOne": 0,
     "daysAtNumberOne": 0,
     "fact": "#1 on Billboard Hot 100 on this day in 2008.",
@@ -457,7 +457,7 @@
   },
   {
     "year": 2013,
-    "date": "2013-08-10",
+    "date": "2013-08-17",
     "title": "Blurred Lines",
     "artist": "Robin Thicke Featuring T.I. + Pharrell",
     "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/9f/b1/b9/9fb1b976-bec0-1964-053d-001fed83a720/13UAAIM09929.rgb.jpg/600x600bb.jpg",
@@ -520,7 +520,7 @@
     "date": "2018-08-11",
     "title": "In My Feelings",
     "artist": "Drake",
-    "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/bb/6d/8f/bb6d8f67-6d04-10b5-dd62-eb5809ac54fc/00602567879152.rgb.jpg/600x600bb.jpg",
+    "coverArt": null,
     "weeksAtNumberOne": 0,
     "daysAtNumberOne": 0,
     "fact": "#1 on Billboard Hot 100 on this day in 2018.",
@@ -529,7 +529,7 @@
   },
   {
     "year": 2019,
-    "date": "2019-08-10",
+    "date": "2019-08-17",
     "title": "Old Town Road",
     "artist": "Lil Nas X Featuring Billy Ray Cyrus",
     "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/07/d4/c3/07d4c33e-b793-d78f-bb1b-52f1e224da88/886447788264.jpg/600x600bb.jpg",
@@ -544,7 +544,7 @@
     "date": "2020-08-15",
     "title": "Watermelon Sugar",
     "artist": "Harry Styles",
-    "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/2b/c4/c9/2bc4c9d4-3bc6-ab13-3f71-df0b89b173de/886448022213.jpg/600x600bb.jpg",
+    "coverArt": null,
     "weeksAtNumberOne": 0,
     "daysAtNumberOne": 0,
     "fact": "#1 on Billboard Hot 100 on this day in 2020.",
@@ -589,7 +589,7 @@
   },
   {
     "year": 2024,
-    "date": "2024-08-10",
+    "date": "2024-08-17",
     "title": "A Bar Song (Tipsy)",
     "artist": "Shaboozey",
     "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/72/1c/92/721c9211-2be5-4614-2ca3-28d55b0b5d88/197342837156_cover.jpg/600x600bb.jpg",
