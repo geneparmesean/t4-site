@@ -73,7 +73,7 @@
   },
   {
     "year": 1981,
-    "date": "1981-08-22",
+    "date": "1981-08-29",
     "title": "Endless Love",
     "artist": "Diana Ross & Lionel Richie",
     "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/a2/42/21/a24221ca-86a6-7bc0-6497-904434415c32/06UMGIM11025.rgb.jpg/600x600bb.jpg",
@@ -145,15 +145,15 @@
   },
   {
     "year": 1987,
-    "date": "1987-08-22",
-    "title": "Who's That Girl",
-    "artist": "Madonna",
-    "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Features115/v4/e0/0b/b2/e00bb2c1-75f6-6fe2-c7b0-fe804ef20154/dj.gdgmmvht.jpg/600x600bb.jpg",
+    "date": "1987-08-29",
+    "title": "La Bamba",
+    "artist": "Los Lobos",
+    "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music/11/ac/57/mzi.gihwdlmg.jpg/600x600bb.jpg",
     "weeksAtNumberOne": 0,
     "daysAtNumberOne": 0,
     "fact": "#1 on Billboard Hot 100 on this day in 1987.",
-    "spotify": "https://open.spotify.com/search/Who's%20That%20Girl%20Madonna",
-    "youtube": "https://www.youtube.com/results?search_query=Who's%20That%20Girl%20Madonna"
+    "spotify": "https://open.spotify.com/search/La%20Bamba%20Los%20Lobos",
+    "youtube": "https://www.youtube.com/results?search_query=La%20Bamba%20Los%20Lobos"
   },
   {
     "year": 1988,
@@ -205,7 +205,7 @@
   },
   {
     "year": 1992,
-    "date": "1992-08-22",
+    "date": "1992-08-29",
     "title": "End Of The Road (From \"Boomerang\")",
     "artist": "Boyz II Men",
     "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Features124/v4/04/a9/73/04a973d9-0479-f68e-2a1d-cfcfc12c41b5/dj.qkymbdbw.jpg/600x600bb.jpg",
@@ -277,7 +277,7 @@
   },
   {
     "year": 1998,
-    "date": "1998-08-22",
+    "date": "1998-08-29",
     "title": "The Boy Is Mine",
     "artist": "Brandy & Monica",
     "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/49/49/c6/4949c620-c776-f3fb-ced4-357ad154e68f/1469_11eb9d19585b44268d29f4cda8406249.jpg/600x600bb.jpg",
@@ -409,7 +409,7 @@
   },
   {
     "year": 2009,
-    "date": "2009-08-22",
+    "date": "2009-08-29",
     "title": "I Gotta Feeling",
     "artist": "The Black Eyed Peas",
     "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/41/b9/6c/41b96c5e-b03c-0b5d-1ad2-599f4eb50fec/09UMGIM13834.rgb.jpg/600x600bb.jpg",
@@ -481,15 +481,15 @@
   },
   {
     "year": 2015,
-    "date": "2015-08-22",
-    "title": "Can't Feel My Face",
-    "artist": "The Weeknd",
-    "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/30/05/1e/30051e57-a63a-3acc-4b30-42568293f5f7/15UMGIM36514.rgb.jpg/600x600bb.jpg",
+    "date": "2015-08-29",
+    "title": "Cheerleader",
+    "artist": "OMI",
+    "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/3c/37/4f/3c374f10-b449-3e52-06d7-f6ddccfb313c/886445870381.jpg/600x600bb.jpg",
     "weeksAtNumberOne": 0,
     "daysAtNumberOne": 0,
     "fact": "#1 on Billboard Hot 100 on this day in 2015.",
-    "spotify": "https://open.spotify.com/search/Can't%20Feel%20My%20Face%20The%20Weeknd",
-    "youtube": "https://www.youtube.com/results?search_query=Can't%20Feel%20My%20Face%20The%20Weeknd"
+    "spotify": "https://open.spotify.com/search/Cheerleader%20OMI",
+    "youtube": "https://www.youtube.com/results?search_query=Cheerleader%20OMI"
   },
   {
     "year": 2016,
@@ -532,7 +532,7 @@
     "date": "2019-08-24",
     "title": "Bad Guy",
     "artist": "Billie Eilish",
-    "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/1a/37/d1/1a37d1b1-8508-54f2-f541-bf4e437dda76/19UMGIM05028.rgb.jpg/600x600bb.jpg",
+    "coverArt": null,
     "weeksAtNumberOne": 0,
     "daysAtNumberOne": 0,
     "fact": "#1 on Billboard Hot 100 on this day in 2019.",
@@ -541,7 +541,7 @@
   },
   {
     "year": 2020,
-    "date": "2020-08-22",
+    "date": "2020-08-29",
     "title": "WAP",
     "artist": "Cardi B Featuring Megan Thee Stallion",
     "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/ec/f5/45/ecf545c0-24bd-90de-7639-3069e648c51d/075679804938.jpg/600x600bb.jpg",
@@ -580,7 +580,7 @@
     "date": "2023-08-26",
     "title": "Rich Men North Of Richmond",
     "artist": "Oliver Anthony Music",
-    "coverArt": null,
+    "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/32/fc/0e/32fc0e06-473b-0697-88e9-338876afb8d6/artwork.jpg/600x600bb.jpg",
     "weeksAtNumberOne": 0,
     "daysAtNumberOne": 0,
     "fact": "#1 on Billboard Hot 100 on this day in 2023.",
@@ -604,7 +604,7 @@
     "date": "2025-08-23",
     "title": "Ordinary",
     "artist": "Alex Warren",
-    "coverArt": null,
+    "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/46/78/fb/4678fb84-d19e-f11b-93ff-4dc17660bff8/075679619075.jpg/600x600bb.jpg",
     "weeksAtNumberOne": 0,
     "daysAtNumberOne": 0,
     "fact": "#1 on Billboard Hot 100 on this day in 2025.",
@@ -613,10 +613,10 @@
   },
   {
     "year": 2026,
-    "date": "2026-08-22",
+    "date": "2026-08-29",
     "title": "Choosin' Texas",
     "artist": "Ella Langley",
-    "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/e2/91/4d/e2914d0a-7f1d-f04c-fbf4-c50b38548838/196873638690.jpg/600x600bb.jpg",
+    "coverArt": null,
     "weeksAtNumberOne": 0,
     "daysAtNumberOne": 0,
     "fact": "#1 on Billboard Hot 100 on this day in 2026.",
