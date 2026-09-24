@@ -1,15 +1,15 @@
 [
   {
     "year": 1975,
-    "date": "1975-09-20",
-    "title": "Fame",
-    "artist": "David Bowie",
-    "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/0a/a7/0c/0aa70c09-e325-3900-6a5e-1557ff7ce710/190295990329.jpg/600x600bb.jpg",
+    "date": "1975-09-27",
+    "title": "I'm Sorry",
+    "artist": "John Denver",
+    "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/45/c3/b0/45c3b031-bf28-6a03-29f5-d37c05c35976/886443346710.jpg/600x600bb.jpg",
     "weeksAtNumberOne": 0,
     "daysAtNumberOne": 0,
     "fact": "#1 on Billboard Hot 100 on this day in 1975.",
-    "spotify": "https://open.spotify.com/search/Fame%20David%20Bowie",
-    "youtube": "https://www.youtube.com/results?search_query=Fame%20David%20Bowie"
+    "spotify": "https://open.spotify.com/search/I'm%20Sorry%20John%20Denver",
+    "youtube": "https://www.youtube.com/results?search_query=I'm%20Sorry%20John%20Denver"
   },
   {
     "year": 1976,
@@ -61,7 +61,7 @@
   },
   {
     "year": 1980,
-    "date": "1980-09-20",
+    "date": "1980-09-27",
     "title": "Upside Down",
     "artist": "Diana Ross",
     "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/4b/68/94/4b68944b-e875-5729-e97f-c781fc9e0c1e/06UMGIM11291.rgb.jpg/600x600bb.jpg",
@@ -133,7 +133,7 @@
   },
   {
     "year": 1986,
-    "date": "1986-09-20",
+    "date": "1986-09-27",
     "title": "Stuck With You",
     "artist": "Huey Lewis & The News",
     "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/b0/7f/cc/b07fcce9-0d39-9ab0-e1dd-54ffd1642db6/13UABIM36878.rgb.jpg/600x600bb.jpg",
@@ -265,7 +265,7 @@
   },
   {
     "year": 1997,
-    "date": "1997-09-20",
+    "date": "1997-09-27",
     "title": "Honey",
     "artist": "Mariah Carey",
     "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/b8/fb/9b/b8fb9b86-32ab-5f6a-0e50-35b0e991ee44/mzi.stdlgspm.jpg/600x600bb.jpg",
@@ -337,7 +337,7 @@
   },
   {
     "year": 2003,
-    "date": "2003-09-20",
+    "date": "2003-09-27",
     "title": "Shake Ya Tailfeather",
     "artist": "Nelly, P. Diddy & Murphy Lee",
     "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/83/4b/e3/834be3c1-4e68-69e9-6184-71d836ccb73e/00602498607893.rgb.jpg/600x600bb.jpg",
@@ -397,15 +397,15 @@
   },
   {
     "year": 2008,
-    "date": "2008-09-20",
-    "title": "Whatever You Like",
-    "artist": "T.I.",
-    "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/3d/af/72/3daf72e8-952e-ac6e-94b9-fdad865b61fd/050742335380_art.jpg/600x600bb.jpg",
+    "date": "2008-09-27",
+    "title": "So What",
+    "artist": "P!nk",
+    "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/18/0b/56/180b566d-09b1-0510-cbc7-b35440b93f73/196874514603.jpg/600x600bb.jpg",
     "weeksAtNumberOne": 0,
     "daysAtNumberOne": 0,
     "fact": "#1 on Billboard Hot 100 on this day in 2008.",
-    "spotify": "https://open.spotify.com/search/Whatever%20You%20Like%20T.I.",
-    "youtube": "https://www.youtube.com/results?search_query=Whatever%20You%20Like%20T.I."
+    "spotify": "https://open.spotify.com/search/So%20What%20P!nk",
+    "youtube": "https://www.youtube.com/results?search_query=So%20What%20P!nk"
   },
   {
     "year": 2009,
@@ -469,7 +469,7 @@
   },
   {
     "year": 2014,
-    "date": "2014-09-20",
+    "date": "2014-09-27",
     "title": "All About That Bass",
     "artist": "Meghan Trainor",
     "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/ff/3c/1b/ff3c1b7a-7f4f-d799-6df0-a1d8cf3050e5/196872695540.jpg/600x600bb.jpg",
@@ -520,7 +520,7 @@
     "date": "2018-09-22",
     "title": "In My Feelings",
     "artist": "Drake",
-    "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/bb/6d/8f/bb6d8f67-6d04-10b5-dd62-eb5809ac54fc/00602567879152.rgb.jpg/600x600bb.jpg",
+    "coverArt": null,
     "weeksAtNumberOne": 0,
     "daysAtNumberOne": 0,
     "fact": "#1 on Billboard Hot 100 on this day in 2018.",
@@ -544,7 +544,7 @@
     "date": "2020-09-26",
     "title": "WAP",
     "artist": "Cardi B Featuring Megan Thee Stallion",
-    "coverArt": null,
+    "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/ec/f5/45/ecf545c0-24bd-90de-7639-3069e648c51d/075679804938.jpg/600x600bb.jpg",
     "weeksAtNumberOne": 0,
     "daysAtNumberOne": 0,
     "fact": "#1 on Billboard Hot 100 on this day in 2020.",
@@ -601,7 +601,7 @@
   },
   {
     "year": 2025,
-    "date": "2025-09-20",
+    "date": "2025-09-27",
     "title": "Golden",
     "artist": "HUNTR/X: EJAE, Audrey Nuna & REI AMI",
     "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/e1/15/42/e1154273-8ecd-5702-e6e6-597f28001681/25UMGIM82363.rgb.jpg/600x600bb.jpg",
@@ -613,7 +613,7 @@
   },
   {
     "year": 2026,
-    "date": "2026-09-19",
+    "date": "2026-09-26",
     "title": "Choosin' Texas",
     "artist": "Ella Langley",
     "coverArt": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/e2/91/4d/e2914d0a-7f1d-f04c-fbf4-c50b38548838/196873638690.jpg/600x600bb.jpg",
